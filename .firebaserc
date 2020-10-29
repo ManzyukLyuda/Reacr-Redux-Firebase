@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "todo-d4012",
+    "staging": "todo-d4012"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

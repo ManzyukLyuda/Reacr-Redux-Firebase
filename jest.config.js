@@ -1,0 +1,5 @@
+{
+    setupFilesAfterEnv: [
+        './test/setupTest.ts'
+      ]
+}

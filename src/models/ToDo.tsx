@@ -1,8 +1,13 @@
+import Collaborator from "./Collaborator";
+import Comment from "./Comment"
+
 type ToDo =  {
     id: number,
     name: string,
     description: string,
     completed: Boolean,
-    assignedTo: string
+    assignedTo: string,
+    comments: Comment[]
+    collaborators: Collaborator[]
   }
 export default ToDo;

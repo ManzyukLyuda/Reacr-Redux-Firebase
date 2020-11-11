@@ -116,7 +116,6 @@ describe('<AddTodoForm />', () => {
         })
 
         expect(props.onTodoAdd.mock.calls.length).to.be.equal(1);
-        console.log(props.onTodoAdd.mock.calls[0][0])
         expect(props.onTodoAdd.mock.calls[0][0].name).to.be.equal('title');
     })
 });

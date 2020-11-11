@@ -1,0 +1,35 @@
+.comment-thread{
+    margin: 16px -16px -16px;
+    padding: 16px;
+    background: #cacaca42;
+}
+.comment-item{
+    margin-bottom: 16px;
+    padding: 16px;
+    box-shadow: inset 0 2px 2px 0 rgba(0,0,0,0.14), inset 0 1px 5px 0 rgba(0,0,0,0.12), inset 0 3px 1px -2px rgba(0,0,0,0.2);
+    background: #ffffff2b;
+}
+
+.comment-thread_title{
+    margin: 0 0 16px;
+    font-size: 1rem;
+
+}
+
+.comment-form{
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 16px;
+}
+.comment-form textarea{
+    width: 100%;
+    flex-basis: 100%;
+    margin-right: 16px;
+}
+.comment-author{
+    margin: 0 0 8px;
+}
+.comment-text{
+    margin: 0;
+}

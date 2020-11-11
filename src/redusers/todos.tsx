@@ -1,11 +1,16 @@
 import ToDo from "../models/ToDo";
+import Comment from "../models/Comment";
+import Collaborator from "../models/Collaborator";
+
 
 interface AddTodoAction { type:'ADD_TODO', payload: ToDo}
 interface ToggleTodoAction { type: 'TOGGLE_TODO', payload: { id: number } }
 interface DeleteTodoAction { type: 'DELETE_TODO', payload: {id: number} }
+interface AddCommnet { type: 'ADD_COMMENT', payload: Comment }
+interface AddCollaborator { type: 'ADD_COLLABORATOR', payload: Collaborator }
 interface InitAction{type: undefined, payload: {}}
 
-type Action = ToggleTodoAction | AddTodoAction | DeleteTodoAction | InitAction;
+type Action = ToggleTodoAction | AddTodoAction | DeleteTodoAction | AddCommnet | AddCollaborator | InitAction;
 
 type State = ToDo [];
 
@@ -21,7 +26,9 @@ const todos = (state: State = initialState, action: Action) => {
                   name: action.payload.name,
                   description: action.payload.description,
                   completed: false,
-                  assignedTo: action.payload.assignedTo
+                  assignedTo: action.payload.assignedTo,
+                  comments: [],
+                  collaborators: []
                 }
               ]
         case 'TOGGLE_TODO':
@@ -32,6 +39,31 @@ const todos = (state: State = initialState, action: Action) => {
 
         case 'DELETE_TODO':
             return state.filter(todo => todo.id !== action.payload.id)
+        
+        case 'ADD_COMMENT':
+            return state.map(todo => {
+                 if (todo.id === action.payload.parentTodo){
+                    return {
+                        ...todo,
+                        comments: [
+                            ...todo.comments, 
+                            action.payload
+                        ]
+                    }
+                 }
+            })
+        case 'ADD_COLLABORATOR':
+            return state.map(todo => {
+                    if (todo.id === action.payload.parentTodo){
+                    return {
+                        ...todo,
+                        collaborators: [
+                            ...todo.collaborators, 
+                            action.payload
+                        ]
+                    }
+                    }
+            })
     
     default:
         return state;

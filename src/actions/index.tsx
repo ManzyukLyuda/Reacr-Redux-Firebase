@@ -1,5 +1,6 @@
 import User from '../models/User';
 let nextTodoId = 0;
+let nextCommnetId = 1;
 
 const addTodo = (name: string, description: string, assignedTo: string) => {
     return {
@@ -9,6 +10,28 @@ const addTodo = (name: string, description: string, assignedTo: string) => {
             name,
             description,
             assignedTo
+        }
+    }
+}
+
+const addComment = (author: string, comment: string, parentTodo: number) => {
+    return {
+        type: 'ADD_COMMENT',
+        payload: {
+            id: +(parentTodo.toString() + (nextCommnetId++).toString()),
+            author,
+            comment,
+            parentTodo
+        }
+    }
+}
+
+const addCollaborator = (collaborator: string, parentTodo: number) => {
+    return {
+        type: 'ADD_COLLABORATOR',
+        payload: {
+            collaborator,
+            parentTodo
         }
     }
 }
@@ -52,6 +75,8 @@ const deleteTodo = (id: number) => {
 
 export {
     addTodo,
+    addComment,
+    addCollaborator,
     userLogIn,
     toggleTodo,
     deleteTodo,

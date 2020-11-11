@@ -7,5 +7,5 @@ import { getUsers }  from './users'
 export default combineReducers({
   todos,
   setUser,
-  getUsers
+  getUsers,
 })

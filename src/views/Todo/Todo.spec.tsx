@@ -8,6 +8,10 @@ import TodoList from '../../components/TodoList/TodoList'
 describe('<ToDoPage />', ()=>{
     it('render <ToDoPage />', ()=>{
         const props = {
+            user: {
+                email: 'test@test.com',
+                uid: '111'
+            },
             todos: [], 
             users: [], 
             dispatch: jest.fn()
@@ -18,6 +22,10 @@ describe('<ToDoPage />', ()=>{
 
     it('render one H1 title', ()=>{
         const props = {
+            user: {
+                email: 'test@test.com',
+                uid: '111'
+            },
             todos: [], 
             users: [], 
             dispatch: jest.fn()
@@ -28,6 +36,10 @@ describe('<ToDoPage />', ()=>{
 
     it('render one Sign Out button', ()=>{
         const props = {
+            user: {
+                email: 'test@test.com',
+                uid: '111'
+            },
             todos: [], 
             users: [], 
             dispatch: jest.fn()
@@ -39,6 +51,10 @@ describe('<ToDoPage />', ()=>{
 
     it('render one TodoForm', ()=>{
         const props = {
+            user: {
+                email: 'test@test.com',
+                uid: '111'
+            },
             todos: [], 
             users: [], 
             dispatch: jest.fn()
@@ -49,6 +65,10 @@ describe('<ToDoPage />', ()=>{
 
     it('render one TodoList', ()=>{
         const props = {
+            user: {
+                email: 'test@test.com',
+                uid: '111'
+            },
             todos: [], 
             users: [], 
             dispatch: jest.fn()
@@ -59,6 +79,10 @@ describe('<ToDoPage />', ()=>{
 
     it('render one TodoList', ()=>{
         const props = {
+            user: {
+                email: 'test@test.com',
+                uid: '111'
+            },
             todos: [], 
             users: [], 
             dispatch: jest.fn()

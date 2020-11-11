@@ -16,6 +16,8 @@
     font-size: 24px;
     font-weight: 300;
     margin: 0 0 8px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .todo-item_description{
@@ -36,4 +38,8 @@
 }
 .todo-item___done .todo-item_description{
     text-decoration: line-through;
+}
+.todo-item_collaborators{
+    /* display: flex;
+    align-items: center; */
 }

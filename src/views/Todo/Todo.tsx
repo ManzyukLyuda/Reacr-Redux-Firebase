@@ -9,13 +9,14 @@ import { addTodo, deleteTodo, toggleTodo, userLogOut } from "../../actions"
 
 
 interface Props{
+    user: User;
     todos: Todo[];
     users: User[];
     dispatch : Dispatch;
 }
 
 const TodoPage: React.FC<Props> = (props: Props) => {
-    const { todos, users, dispatch } = props;
+    const { todos, users, dispatch, user } = props;
 
     const onSignOut = ()=>{
         Firebase.auth().signOut().then(function() {
@@ -42,7 +43,7 @@ const TodoPage: React.FC<Props> = (props: Props) => {
         <main className='main'>
             <h1>TodoList <button className="link" onClick = { onSignOut }>Sign Out</button></h1>
             <TodoForm  users = {users} onTodoAdd={ onTodoAdd }/>
-            <TodoList todos = {todos} onDeleteItem={ onDeleteItem } onToggleItem={onToggleItem}/>
+            <TodoList  todos={todos} onDeleteItem={ onDeleteItem } onToggleItem={onToggleItem} user={user} users = {users}/>
         </main>
     )
 }

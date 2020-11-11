@@ -17,12 +17,12 @@ const setUser = (state: State = initioalState, action: Action) => {
     switch (action.type){
         case  'USER_LOG_IN':
             return {
-                user: action.user,
+                email: action.user,
                 isLogedIn: true
             }
         case 'USER_LOG_OUT':
             return{
-                user: null,
+                email: null,
                 isLogedIn: false
             }
         default:

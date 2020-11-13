@@ -20,7 +20,6 @@ export default (props: Props)=>{
     const isEmpty = !(options.length > 0);
     const dispatch = useDispatch();
     const dropdownOnChange = (data: any)=> {
-        console.log(data)
         dispatch(addCollaborator(data, parentTodo));
 
     }

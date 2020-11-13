@@ -10,7 +10,9 @@ const TODO = [
         description: 'first todo',
         assignedTo: 'user@user.com',
         id: 0,
-        completed: false
+        completed: false,
+        collaborators: [],
+        comments: []
       }
   ]
   
@@ -20,28 +22,36 @@ const TODO = [
       description: 'first todo',
       assignedTo: 'user@user.com',
       id: 0,
-      completed: false
+      completed: false,
+      collaborators: [],
+      comments: []
     },
     {
       name: 'todo',
       description: 'second todo',
       assignedTo: 'user@user.com',
       id: 1,
-      completed: false
+      completed: false,
+      collaborators: [],
+      comments: []
     },
     {
       name: 'todo',
       description: 'third todo',
       assignedTo: 'user@user.com',
       id: 2,
-      completed: false
+      completed: false,
+      collaborators: [],
+      comments: []
     },
     {
         name: 'todo',
         description: 'fourth todo',
         assignedTo: 'user@user.com',
         id: 3,
-        completed: false
+        completed: false,
+        collaborators: [],
+        comments: []
     },
   ]
   
@@ -50,7 +60,12 @@ const TODO = [
         const props = { 
             todos: [], 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
          }
         const wrapper = shallow(<TodosList {...props} />);
         expect(wrapper).to.be.ok
@@ -60,7 +75,12 @@ const TODO = [
         const props = { 
             todos: [], 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
          }
         const wrapper = shallow( <TodosList {...props} /> );
         expect(wrapper.find('ul').length).to.equal(1)
@@ -70,7 +90,12 @@ const TODO = [
         const props = { 
             todos: [], 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
          }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('li').length).to.equal(0)
@@ -80,7 +105,12 @@ const TODO = [
         const props = { 
             todos: TODO, 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
          }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('li').length).to.equal(1)
@@ -90,7 +120,12 @@ const TODO = [
         const props = { 
             todos: TODO, 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('h5').first().text()).to.equal('todo')
@@ -100,7 +135,12 @@ const TODO = [
         const props = { 
             todos: TODO, 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('.todo-item_description').first().text()).to.equal('first todo')
@@ -110,7 +150,12 @@ const TODO = [
         const props = { 
             todos: TODO, 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('.todo-item_assigned').first().text()).to.equal('Assigned to user@user.com')
@@ -120,7 +165,12 @@ const TODO = [
         const props = { 
             todos: TODO, 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('button').first().text()).to.equal('Done')
@@ -133,10 +183,17 @@ const TODO = [
                 description: 'first todo',
                 assignedTo: 'user@user.com',
                 id: 0,
-                completed: true
+                completed: true,
+                collaborators: [],
+                comments: []
             }], 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('button').first().text()).to.equal('Delete')
@@ -146,7 +203,12 @@ const TODO = [
         const props = { 
             todos: TODOS, 
             onDeleteItem: () => null,
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
         expect(wrapper.find('li').length).to.be.greaterThan(1)
@@ -156,7 +218,12 @@ const TODO = [
             const props = { 
                 todos: TODO, 
                 onDeleteItem: () => null,
-                onToggleItem: jest.fn()
+                onToggleItem: jest.fn(),
+                user: {
+                    email: 'user@user.com',
+                    uid: '1'
+                },
+                users: []
             }
         const wrapper = shallow(<TodosList {...props} />)
 
@@ -168,7 +235,12 @@ const TODO = [
         const props = { 
             todos: TODO, 
             onDeleteItem: () => null,
-            onToggleItem: jest.fn()
+            onToggleItem: jest.fn(),
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
     
@@ -183,10 +255,17 @@ const TODO = [
                 description: 'first todo',
                 assignedTo: 'user@user.com',
                 id: 0,
-                completed: true
+                completed: true,
+                collaborators: [],
+                comments: []
             }], 
             onDeleteItem: jest.fn(),
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
 
     const wrapper = shallow(<TodosList {...props} />)
@@ -202,10 +281,17 @@ const TODO = [
                 description: 'first todo',
                 assignedTo: 'user@user.com',
                 id: 0,
-                completed: true
+                completed: true,
+                collaborators: [],
+                comments: []
             }], 
             onDeleteItem: jest.fn(),
-            onToggleItem: () => null
+            onToggleItem: () => null,
+            user: {
+                email: 'user@user.com',
+                uid: '1'
+            },
+            users: []
         }
         const wrapper = shallow(<TodosList {...props} />)
     

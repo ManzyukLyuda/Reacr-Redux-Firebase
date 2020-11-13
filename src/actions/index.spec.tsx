@@ -28,6 +28,32 @@ describe('actions', () => {
            expect(Actions.toggleTodo(0)).to.deep.equal(expectedAction)
       } )
 
+      it('create ADD_COMMENT action', ()=>{
+        const expectedAction = {
+              type: 'ADD_COMMENT',
+              payload: {
+                  id: 1,
+                  author: 'test@test.com',
+                  comment: 'test',
+                  parentTodo: 0,
+                  
+              }
+          }
+         expect(Actions.addComment('test@test.com', 'test', 0)).to.deep.equal(expectedAction)
+      } )
+
+      it('create ADD_COLLABORATOR action', ()=>{
+        const expectedAction = {
+              type: 'ADD_COLLABORATOR',
+              payload: {
+                  collaborator: 'test@test.com',
+                  parentTodo: 0,
+                  
+              }
+          }
+         expect(Actions.addCollaborator('test@test.com', 0)).to.deep.equal(expectedAction)
+      } )
+
       it('create DELETE_TODO action', ()=>{
         const expectedAction = {
             type: 'DELETE_TODO',

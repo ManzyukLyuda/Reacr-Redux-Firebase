@@ -51,18 +51,21 @@ const todos = (state: State = initialState, action: Action) => {
                         ]
                     }
                  }
+                 else return{ ...todo }
+                    
             })
         case 'ADD_COLLABORATOR':
             return state.map(todo => {
                     if (todo.id === action.payload.parentTodo){
-                    return {
-                        ...todo,
-                        collaborators: [
-                            ...todo.collaborators, 
-                            action.payload
-                        ]
+                        return {
+                            ...todo,
+                            collaborators: [
+                                ...todo.collaborators, 
+                                action.payload
+                            ]
+                        }
                     }
-                    }
+                    else return{ ...todo }
             })
     
     default:

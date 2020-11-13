@@ -21,7 +21,7 @@ const TodoList: React.FC<Props> = (props: Props)=>{
     const setUsers = (todo: ToDo)=>{
         let newUsers: User[] = [];
         let selected = todo.collaborators.map(collaborator => collaborator.collaborator);
-        console.log(selected)
+    
         users.map(user => {
             if(selected.length > 0){
                 if( !selected.includes(user.email) ){
@@ -33,7 +33,6 @@ const TodoList: React.FC<Props> = (props: Props)=>{
             }
            
         })
-       console.log(newUsers)
         return newUsers;
     }
     return(
@@ -41,13 +40,15 @@ const TodoList: React.FC<Props> = (props: Props)=>{
             {
                 todos.map(todo => { return(
                     <li key={todo.id} className={`todo-item ${todo.completed && "todo-item___done"}`}>
-                        <h5>
-                            {todo.name}
+                        <div className="todo-item_title" >
+                             <h5>
+                                {todo.name}
+                            </h5>
                             {todo.completed ? 
                                 <button className="btn btn-red" onClick = {()=>{onDeleteItem(todo.id)}}>Delete</button> :
                                 <button className="btn" onClick = {()=>{onToggleItem(todo.id)}}>Done</button>
                             }
-                        </h5>
+                        </div>
                         <p className="todo-item_description">{todo.description}</p>
                         <p className="todo-item_assigned">Assigned to {todo.assignedTo}</p>
                         <div className="todo-item_collaborators">

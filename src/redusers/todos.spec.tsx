@@ -13,9 +13,11 @@ describe('todos reducers', ()=>{
             name: 'task',
             description: 'description',
             completed: false,
-            assignedTo: 'user'
+            assignedTo: 'user',
+            collaborators: [], 
+            comments: []
         }]
-        expect(todos(initialState, { type: 'ADD_TODO', payload: {name: 'task', description: 'description', assignedTo: 'user', id: 0, completed: false} })).deep.equal(expectedState)
+        expect(todos(initialState, { type: 'ADD_TODO', payload: {name: 'task', description: 'description', assignedTo: 'user', id: 0, completed: false, collaborators: [], comments: []} })).deep.equal(expectedState)
     })
     it('handle action TOGGLE_TODO', () => {
         const initialState = [
@@ -25,6 +27,8 @@ describe('todos reducers', ()=>{
                  description: 'description',
                  id: 0,
                  name: 'task',
+                 comments: [],
+                 collaborators: []
             }
         ]
         const expectedState = [{
@@ -32,8 +36,70 @@ describe('todos reducers', ()=>{
             name: 'task',
             description: 'description',
             completed: true,
-            assignedTo: 'user'
+            assignedTo: 'user',
+            comments: [],
+            collaborators: []
         }]
         expect(todos(initialState, { type: 'TOGGLE_TODO', payload: {id: 0} })).deep.equal(expectedState)
+    })
+
+    it('handle action ADD_COMMENT', () => {
+        const initialState = [
+            {
+                assignedTo: 'user',
+                 completed: false,
+                 description: 'description',
+                 id: 0,
+                 name: 'task',
+                 comments: [],
+                 collaborators: []
+            }
+        ]
+        const expectedState = [{
+            id: 0,
+            name: 'task',
+            description: 'description',
+            completed: false,
+            assignedTo: 'user',
+            comments: [
+                {
+                    id: 1,
+                    author: 'user@user.com',
+                    comment: 'test',
+                    parentTodo: 0
+                }
+            ],
+            collaborators: []
+        }]
+        expect(todos(initialState, { type: 'ADD_COMMENT', payload: {id: 1, author: 'user@user.com', comment: 'test', parentTodo: 0} })).deep.equal(expectedState)
+    })
+
+    it('handle action ADD_COLLABORATOR', () => {
+        const initialState = [
+            {
+                assignedTo: 'user',
+                 completed: false,
+                 description: 'description',
+                 id: 0,
+                 name: 'task',
+                 comments: [],
+                 collaborators: []
+            }
+        ]
+        const expectedState = [{
+            id: 0,
+            name: 'task',
+            description: 'description',
+            completed: false,
+            assignedTo: 'user',
+            comments: [],
+            collaborators: [
+                {
+                    parentTodo: 0,
+                    collaborator: 'test@user.com'
+                }
+            ]
+        }]
+        expect(todos(initialState, { type: 'ADD_COLLABORATOR', payload: {parentTodo: 0, collaborator: 'test@user.com'} })).deep.equal(expectedState)
     })
 })

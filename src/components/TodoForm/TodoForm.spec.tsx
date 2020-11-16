@@ -19,9 +19,7 @@ interface todoInnerData{
         description: string,  
         assignedTo: string
 }
-const mockSubmite = jest.fn((data: {name: string, description: string, assignedTo: string}) => {
-    return Promise.resolve(data);
-});
+
 
 describe('<AddTodoForm />', () => {
     it('render <AddTodoForm />', () => {

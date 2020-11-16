@@ -1,10 +1,10 @@
 interface State {
-            user: string | null,
+            email: string | null,
             isLogedIn: boolean;
         }
 
 const initioalState = {
-    user: null, 
+    email: null, 
     isLogedIn: false
 }
 

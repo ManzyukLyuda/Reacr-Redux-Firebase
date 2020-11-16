@@ -18,9 +18,8 @@ const CommentList = (props: Props) => {
             <ul>
                 {
                     todo.comments.map((comment: Comment) =>{
-                        console.log(comment)
                         return  <li key={`comment-${comment.id}`} className='comment-item'>
-                                    <p className="comment-author">From: {comment.author}:</p>
+                                    <p className="comment-author">From: {comment.author}</p>
                                     <p className="comment-text">{comment.comment}</p>
                                 </li>
                     })

@@ -21,9 +21,9 @@ const CommentForm: React.FC<Props>= (props: Props) => {
         reset();
     }
 
-    return  <form onSubmit={handleSubmit(handlerSubmitComment)} className="comment-form">
-                <textarea name="comment" placeholder="Leave comment" ref={register({ required: true })}></textarea>
-                <button type='submit' disabled={!formState.isValid} className="btn">Comment</button>
+    return  <form onSubmit={handleSubmit(handlerSubmitComment)} className="comment-form" data-testid="form">
+                <textarea name="comment" placeholder="Leave comment" ref={register({ required: true })} defaultValue='' data-testid="textarea"></textarea>
+                <button type='submit' disabled={!formState.isValid} className="btn" data-testid="comment">Comment</button>
             </form>
 }
 

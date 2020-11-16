@@ -9,7 +9,7 @@ describe('user log in reducer', ()=>{
 
     it('handle action LOG_IN', ()=>{
         const expectedState = {
-            user: 'user@email.com',
+            email: 'user@email.com',
             isLogedIn: true
         }
         expect(setUser(initioalState, {type: 'USER_LOG_IN', user: 'user@email.com'})).deep.equal(expectedState)

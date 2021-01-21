@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
-import ErrorBoundry from './Error-boundry';
+import ErrorBoundry from './ErrorBoundry';
 import { expect } from 'chai'
 
 describe('<ErrorBoundry />', () => {

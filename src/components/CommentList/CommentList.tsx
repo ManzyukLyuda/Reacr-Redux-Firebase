@@ -11,7 +11,8 @@ type Props = {
 }
 
 const CommentList = (props: Props) => {
-    const {todo, user} = props
+    const {todo, user} = props;
+    
     return  <div className='comment-thread'>
             <h6 className='comment-thread_title'>Comments</h6>
             {!todo.completed && <CommentForm todoId={todo.id} user={user}/>}

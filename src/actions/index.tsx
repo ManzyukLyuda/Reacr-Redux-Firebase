@@ -1,12 +1,10 @@
 import User from '../models/User';
-let nextTodoId = 0;
-let nextCommnetId = 1;
 
-const addTodo = (name: string, description: string, assignedTo: string) => {
+const addTodo = (name: string, description: string, assignedTo: string, id: number) => {
     return {
         type: 'ADD_TODO',
         payload:{
-            id: nextTodoId++,
+            id,
             name,
             description,
             assignedTo
@@ -14,11 +12,11 @@ const addTodo = (name: string, description: string, assignedTo: string) => {
     }
 }
 
-const addComment = (author: string, comment: string, parentTodo: number) => {
+const addComment = (author: string, comment: string, parentTodo: number, id: number) => {
     return {
         type: 'ADD_COMMENT',
         payload: {
-            id: +(parentTodo.toString() + (nextCommnetId++).toString()),
+            id,
             author,
             comment,
             parentTodo

@@ -15,7 +15,7 @@ describe('actions', () => {
               assignedTo: 'user'
           }
         }
-        expect(Actions.addTodo('name', 'description', 'user')).to.deep.equal(expectedAction)
+        expect(Actions.addTodo('name', 'description', 'user', 0)).to.deep.equal(expectedAction)
       })
 
       it('create TOOGLE_TODO action', ()=>{
@@ -39,7 +39,7 @@ describe('actions', () => {
                   
               }
           }
-         expect(Actions.addComment('test@test.com', 'test', 0)).to.deep.equal(expectedAction)
+         expect(Actions.addComment('test@test.com', 'test', 0, 1)).to.deep.equal(expectedAction)
       } )
 
       it('create ADD_COLLABORATOR action', ()=>{

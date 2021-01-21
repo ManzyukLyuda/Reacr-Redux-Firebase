@@ -13,11 +13,11 @@ interface Props{
 const CommentForm: React.FC<Props>= (props: Props) => {
     const { register, handleSubmit, formState, reset } = useForm({ mode: 'onChange' });
     const dispatch  = useDispatch();
+    let nextCommnetId = 1;
 
     const handlerSubmitComment = (data: any) => {
-        const  { todoId, user } = props
-
-        dispatch(addComment(user.email, data.comment, todoId))
+        const  { todoId, user } = props;
+        dispatch(addComment(user.email, data.comment, todoId, nextCommnetId++))
         reset();
     }
 

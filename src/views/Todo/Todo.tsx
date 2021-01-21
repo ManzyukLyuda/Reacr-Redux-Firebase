@@ -14,6 +14,7 @@ interface Props{
     users: User[];
     dispatch : Dispatch;
 }
+let nextTodoId = 0;
 
 const TodoPage: React.FC<Props> = (props: Props) => {
     const { todos, users, dispatch, user } = props;
@@ -36,7 +37,7 @@ const TodoPage: React.FC<Props> = (props: Props) => {
         description: string,  
         assignedTo: string
     })=>{
-        dispatch(addTodo(data.name, data.description, data.assignedTo))
+        dispatch(addTodo(data.name, data.description, data.assignedTo, nextTodoId++))
     }
 
     return(

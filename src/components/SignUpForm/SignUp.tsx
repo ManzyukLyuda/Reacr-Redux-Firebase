@@ -1,8 +1,16 @@
 import React, {useRef, useState} from "react";
 import {useForm} from "react-hook-form";
-import { Firebase } from "../../services/firebase-service";
+import { Firebase, Database } from "../../services/firebase-service";
 import {SignUpFormData, ErrorData} from "../../models/SignUpForm";
 import { useHistory } from "react-router-dom";
+import { user } from "firebase-functions/lib/providers/auth";
+
+
+interface UserCredential {
+  user: {
+    email: string
+  }
+}
 
 
 
@@ -22,8 +30,22 @@ const SignUpForm: React.FC =() => {
       .catch(function(error) { 
         setErroMessages({code: error.code, message: error.message}); 
       })
-      .then(function(){
+      .then( function(userCredential:any){
+        console.log(userCredential)
+        if(userCredential.additionalUserInfo){
+          const user = {
+            uid: userCredential.user.uid,
+            email: userCredential.user.email,
+          }
+          var updates:any = {};
+          updates['users/'+userCredential.user.uid] = user;
+        
+          Database.ref().update(updates);
+
+
+        }
         history.push("/form/signin");
+        
       })
     });
 

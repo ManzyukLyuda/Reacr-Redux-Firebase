@@ -7,6 +7,8 @@ import Form from "../Form/Form";
 import Todo from "../../views/Todo/Todo"
 import PrivateRoute from"../PrivateRout/PrivateRout"
 import Spinner from "../../components/Spinner/Spinner"
+import { Database } from "../../services/firebase-service";
+import User from "../../models/User";
 
 
 
@@ -23,11 +25,20 @@ import Spinner from "../../components/Spinner/Spinner"
     const isLoading = useSelector((state: any) =>  state.getUsers.loading);
 
     useEffect(() => {
-      getUserList().then(
-          response => {
-            dispatch(usersLoaded(response))
-          }
-        );
+      // getUserList().then(
+      //     response => {
+      //       dispatch(usersLoaded(response))
+      //     }
+      //   );
+      var starCountRef = Database.ref('users/');
+      starCountRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        let users: User[] = Object.values(data)
+        console.log(users);
+        dispatch(usersLoaded(users))
+      });
+      // const users = Database.ref('users/').limitToLast(100);
+      
   })
     return (
     <Switch>

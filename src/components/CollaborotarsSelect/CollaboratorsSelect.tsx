@@ -16,7 +16,7 @@ const CollaboratorsSelect: React.FC<Props> = (props: Props) => {
     const { todo } = props;
 
     let UsersToAdd = users.map( (user: User) => user.email)
-                                .filter( (user:string) => !todo.collaborators.includes(user)); 
+                          .filter( (user:string) => !todo.collaborators.includes(user)); 
     
     
     const dropdownOnChange = (data: any)=> {

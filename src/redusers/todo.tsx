@@ -33,7 +33,7 @@ const todo = (state: ToDo | undefined, action: ToDoActions) => {
                 ...state,
                 collaborators: [
                     ...state!.collaborators, 
-                    action.payload
+                    action.payload.collaborator
                 ]
             }
 

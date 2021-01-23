@@ -7,7 +7,7 @@ interface AddTodoAction { type:'ADD_TODO', payload: ToDo}
 interface ToggleTodoAction { type: 'TOGGLE_TODO', payload: { id: number } }
 interface DeleteTodoAction { type: 'DELETE_TODO', payload: {id: number} }
 interface AddCommnet { type: 'ADD_COMMENT', payload: Comment }
-interface AddCollaborator { type: 'ADD_COLLABORATOR', payload: Collaborator }
+interface AddCollaborator { type: 'ADD_COLLABORATOR', payload: {collaborator: Collaborator, parentTodo: number} }
 interface InitAction{type: undefined, payload: {}}
 
 type Action = ToggleTodoAction | AddTodoAction | DeleteTodoAction | AddCommnet | AddCollaborator | InitAction;

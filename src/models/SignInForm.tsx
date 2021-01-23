@@ -1,10 +1,9 @@
-export type SignInFormData = {
+export type FormData = {
     email: string;
-    password1: string;
-    password2: string;
-  }
+    password: string;
+};
 
-export type ErrorData = {
-  code: string,
-  message: string
+export type errorData = {
+    code: 'auth/wrong-password' | 'auth/user-not-found' | null,
+    message: string
 }

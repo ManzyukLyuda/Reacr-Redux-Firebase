@@ -1,24 +1,17 @@
 import React from "react";
-import { Dispatch } from 'redux';
+import { useDispatch } from "react-redux";
 import TodoForm from "../../components/TodoForm/TodoForm"
 import TodoList from "../../components/TodoList/TodoList";
-import User from "../../models/User";
-import Todo from "../../models/ToDo";
 import { Firebase } from "../../services/firebase-service";
 import { addTodo, deleteTodo, toggleTodo, userLogOut } from "../../actions"
 
 
-interface Props{
-    user: User;
-    todos: Todo[];
-    users: User[];
-    dispatch : Dispatch;
-}
+
+
 let nextTodoId = 0;
 
-const TodoPage: React.FC<Props> = (props: Props) => {
-    const { todos, users, dispatch, user } = props;
-
+const TodoPage: React.FC = () => {
+    const dispatch = useDispatch();
     const onSignOut = ()=>{
         Firebase.auth().signOut().then(function() {
             dispatch(userLogOut());
@@ -40,11 +33,12 @@ const TodoPage: React.FC<Props> = (props: Props) => {
         dispatch(addTodo(data.name, data.description, data.assignedTo, nextTodoId++))
     }
 
+
     return(
         <main className='main'>
             <h1>TodoList <button className="link" onClick = { onSignOut }>Sign Out</button></h1>
-            <TodoForm  users = {users} onTodoAdd={ onTodoAdd }/>
-            <TodoList  todos={todos} onDeleteItem={ onDeleteItem } onToggleItem={onToggleItem} user={user} users = {users}/>
+            <TodoForm  onTodoAdd={ onTodoAdd }/>
+            <TodoList  onDeleteItem={ onDeleteItem } onToggleItem={onToggleItem} />
         </main>
     )
 }

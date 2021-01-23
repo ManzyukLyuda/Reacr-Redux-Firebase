@@ -2,7 +2,7 @@ import * as React from 'react';
 import  { shallow } from 'enzyme';
 import { expect } from 'chai';
 import { render, fireEvent, act } from "@testing-library/react";
-import SignInForm from './SignIn';
+import SignInForm from './SignUp';
 
 describe('<SignInForm />', ()=>{
 

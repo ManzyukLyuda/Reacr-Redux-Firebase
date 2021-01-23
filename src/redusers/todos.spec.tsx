@@ -93,12 +93,7 @@ describe('todos reducers', ()=>{
             completed: false,
             assignedTo: 'user',
             comments: [],
-            collaborators: [
-                {
-                    parentTodo: 0,
-                    collaborator: 'test@user.com'
-                }
-            ]
+            collaborators: [ 'test@user.com' ]
         }]
         expect(todos(initialState, { type: 'ADD_COLLABORATOR', payload: {parentTodo: 0, collaborator: 'test@user.com'} })).deep.equal(expectedState)
     })

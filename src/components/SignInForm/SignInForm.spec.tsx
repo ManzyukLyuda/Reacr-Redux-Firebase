@@ -2,7 +2,7 @@ import * as React from 'react';
 import { mount, shallow } from 'enzyme'
 import { expect } from 'chai';
 import { render, fireEvent, act, cleanup } from "@testing-library/react";
-import SignUpFrom from './SignUpFrom';
+import SignUpFrom from './SignInFrom';
 import TestStoreWrapper from "../../../test/StoreWrapper"
 
 describe('<SignUpForm />', ()=>{

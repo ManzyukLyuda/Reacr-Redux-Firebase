@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import FormRout from './Form';
 import { MemoryRouter } from 'react-router-dom';
 import TestStoreWrapper from '../../../test/StoreWrapper'
-import SignInForm from '../../components/SignInForm/SignIn';
-import SignUpFrom from '../../components/SignUpForm/SignUpFrom'
+import SignInForm from '../../components/SignInForm/SignInFrom';
+import SignUpFrom from '../../components/SignUpForm/SignUp'
 
 describe('<FormRout />', ()=>{
 

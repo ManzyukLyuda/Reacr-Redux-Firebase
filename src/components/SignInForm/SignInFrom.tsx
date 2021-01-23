@@ -4,11 +4,12 @@ import { Firebase } from "../../services/firebase-service";
 import { useHistory } from 'react-router-dom';
 import { userLogIn } from '../../actions';
 import { useDispatch } from 'react-redux';
-import { FormData, errorData } from '../../models/SignUpForm';
+import { FormData, errorData } from '../../models/SignInForm';
 
-const SignUpForm: React.FC = () => {
+const SignInForm: React.FC = ( {} ) => {
     const dispatch = useDispatch();
     let history = useHistory();
+
     const onSignUpHendler = (email: string)=>{
       dispatch(userLogIn(email));
       history.push("/");
@@ -60,9 +61,9 @@ const SignUpForm: React.FC = () => {
             {userMaessage?.code === "auth/wrong-password" && <p>{userMaessage.message}</p>}
         </div>
         
-        <button data-testid="submit" type="submit" className="btn">Sign Up</button>
+        <button data-testid="submit" type="submit" className="btn">Sign In</button>
       </form>
     );
   }
 
-  export default SignUpForm;
+  export default SignInForm;

@@ -4,23 +4,20 @@ import { mount } from 'enzyme'
 import Router from './Router';
 import { MemoryRouter } from 'react-router-dom';
 import TestStoreWrapper from '../../../test/StoreWrapper'
-import SignInForm from '../../components/SignInForm/SignIn';
+import SignInForm from '../../components/SignInForm/SignInFrom';
 import Todo from '../Todo/Todo'
 import Spinner from '../../components/Spinner/Spinner';
+import configureStore from 'redux-mock-store'
+import { Middleware, Dispatch, AnyAction } from 'redux'
+import { Provider } from 'react-redux'
 
 describe('<Router />', ()=>{
 
     it('render FormRout', ()=>{
-        const props = {
-            isLogedIn: false,
-            users: [], 
-            isLoading: false, 
-            dispatch: jest.fn()
-          };
         const wrapper = mount(
             <TestStoreWrapper>
                 <MemoryRouter initialEntries={['/']}>
-                    <Router {... props}/>
+                    <Router />
                 </MemoryRouter>
             </TestStoreWrapper>
        );
@@ -34,27 +31,31 @@ describe('<Router />', ()=>{
             isLoading: false, 
             dispatch: jest.fn()
           };
+        const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = []
+        const mockStore = configureStore(middlewares);
+        const state = {
+                setUser: {
+                        isLogedIn: false
+                    }, 
+                getUsers: {loading: false}}
+        const store = mockStore(state);
+
           const wrapper = mount(
-            <TestStoreWrapper>
+            <Provider store={store}>
                 <MemoryRouter initialEntries={['/']}>
-                    <Router {... props}/>
+                    <Router/>
                 </MemoryRouter>
-            </TestStoreWrapper>
+            </Provider>
        );
+       
        expect(wrapper.find(SignInForm).length).to.be.equal(1)
     })
-
+    
     it('render <Todo /> for non anonymous users ', ()=>{
-        const props = {
-            isLogedIn: true,
-            users:[],
-            isLoading: false,
-            dispatch: jest.fn()
-          };
           const wrapper = mount(
             <TestStoreWrapper>
                 <MemoryRouter initialEntries={['/']}>
-                    <Router {... props}/>
+                    <Router />
                 </MemoryRouter>
             </TestStoreWrapper>
        );
@@ -63,18 +64,21 @@ describe('<Router />', ()=>{
 
 
     it('render <Todo />  with Spiner for non anonymous users ', ()=>{
-        const props = {
-            isLogedIn: true,
-            users:[],
-            isLoading: true,
-            dispatch: jest.fn()
-          };
+        const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = []
+        const mockStore = configureStore(middlewares);
+        const state = {
+                setUser: {
+                        isLogedIn: true
+                    }, 
+                getUsers: {loading: true}}
+        const store = mockStore(state);
+
           const wrapper = mount(
-            <TestStoreWrapper>
+            <Provider store={store}>
                 <MemoryRouter initialEntries={['/']}>
-                    <Router {... props}/>
+                    <Router/>
                 </MemoryRouter>
-            </TestStoreWrapper>
+            </Provider>
        );
        expect(wrapper.find(Spinner).length).to.be.equal(1)
     })

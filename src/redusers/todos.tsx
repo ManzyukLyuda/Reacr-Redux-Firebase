@@ -38,6 +38,7 @@ const todos = (state: State = initialState, action: ToDoActions) => {
 
         case 'ADD_COLLABORATOR':
             return state.map(t => {
+                    console.log(action.payload)
                     if (t.id === action.payload.parentTodo){
                         return todo(t, action)
                     }

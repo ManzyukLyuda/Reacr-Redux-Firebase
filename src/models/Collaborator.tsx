@@ -1,6 +1,3 @@
-type Collaborator = {
-    collaborator: string,
-    parentTodo: number
-}
+type Collaborator = string
 
 export default Collaborator

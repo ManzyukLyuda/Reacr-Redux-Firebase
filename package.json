@@ -59,7 +59,8 @@
     "@types/enzyme": "^3.10.7",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/react-router-dom": "^5.1.5",
-    "axios": "^0.20.0",
+    "@types/redux-mock-store": "^1.0.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "chai": "^4.2.0",
     "chai-spies": "^1.0.0",
@@ -72,6 +73,7 @@
     "react-materialize": "^3.9.3",
     "react-router-dom": "^5.2.0",
     "redux-devtools": "^3.7.0",
+    "redux-mock-store": "^1.5.4",
     "sinon": "^9.2.0",
     "ts-sinon": "^2.0.1"
   },

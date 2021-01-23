@@ -18,13 +18,9 @@ describe('<CommentList />', () => {
                 assignedTo: 'user@test.com',
                 comments: [],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = shallow( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper>);
        
         expect(wrapper.find(CommentList)).to.be.ok;
     })
@@ -39,13 +35,9 @@ describe('<CommentList />', () => {
                 assignedTo: 'user@test.com',
                 comments: [],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('ul').length).to.be.equal(1);
     })
@@ -60,13 +52,9 @@ describe('<CommentList />', () => {
                 assignedTo: 'user@test.com',
                 comments: [],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('li').length).to.be.equal(0);
     })
@@ -81,13 +69,9 @@ describe('<CommentList />', () => {
                 assignedTo: 'user@test.com',
                 comments: [],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('h6').length).to.be.equal(1);
         expect(wrapper.find('h6').text()).to.be.equal('Comments');
@@ -110,13 +94,9 @@ describe('<CommentList />', () => {
                     }
                 ],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('li').length).to.be.equal(1);
     })
@@ -131,13 +111,9 @@ describe('<CommentList />', () => {
                 assignedTo: 'user@test.com',
                 comments: [],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find(CommentForm).length).to.be.equal(1);
     })
@@ -152,13 +128,9 @@ describe('<CommentList />', () => {
                 assignedTo: 'user@test.com',
                 comments: [],
                 collaborators: []
-            },
-            user: {
-                email: 'test@user.com',
-                uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find(CommentForm).length).to.be.equal(0);
     })
@@ -186,7 +158,7 @@ describe('<CommentList />', () => {
                 uid: 'test'
             }
         }
-        const wrapper = shallow( <CommentList {... props} /> );
+        const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('.comment-author').text()).to.be.equal('From: test@user.com');
         expect(wrapper.find('.comment-text').text()).to.be.equal('test');

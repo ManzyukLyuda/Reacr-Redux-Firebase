@@ -4,15 +4,16 @@ import Comment from '../../models/Comment'
 import CommentForm from '../CommentForm/CommentForm'
 import User from '../../models/User'
 import './CommentList.css'
+import { useSelector } from 'react-redux'
 
 type Props = {
     todo: ToDo,
-    user: User
 }
 
 const CommentList = (props: Props) => {
-    const {todo, user} = props;
-    
+    const {todo} = props;
+    const user = useSelector( (state: any) => state.setUser);
+
     return  <div className='comment-thread'>
             <h6 className='comment-thread_title'>Comments</h6>
             {!todo.completed && <CommentForm todoId={todo.id} user={user}/>}
@@ -30,4 +31,4 @@ const CommentList = (props: Props) => {
    
 }
 
-export default CommentList;
+export default React.memo(CommentList);

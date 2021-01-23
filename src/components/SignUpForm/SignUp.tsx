@@ -1,13 +1,13 @@
 import React, {useRef, useState} from "react";
 import {useForm} from "react-hook-form";
 import { Firebase } from "../../services/firebase-service";
-import {SignInFormData, ErrorData} from "../../models/SignInForm";
+import {SignUpFormData, ErrorData} from "../../models/SignUpForm";
 import { useHistory } from "react-router-dom";
 
 
 
-const SignInForm: React.FC =() => {
-    const { register,  handleSubmit, watch, errors} = useForm<SignInFormData>();
+const SignUpForm: React.FC =() => {
+    const { register,  handleSubmit, watch, errors} = useForm<SignUpFormData>();
     const [userMaessage, setErroMessages] = useState<ErrorData>();
     let history = useHistory();
     
@@ -17,13 +17,13 @@ const SignInForm: React.FC =() => {
     
     
     
-    const onSubmit = handleSubmit((data: SignInFormData) => {
+    const onSubmit = handleSubmit((data: SignUpFormData) => {
       Firebase.auth().createUserWithEmailAndPassword(data.email, data.password1)
       .catch(function(error) { 
         setErroMessages({code: error.code, message: error.message}); 
       })
       .then(function(){
-        history.push("/form/signup");
+        history.push("/form/signin");
       })
     });
 
@@ -86,6 +86,6 @@ const SignInForm: React.FC =() => {
     );
   }
   
-  export default SignInForm;
+  export default SignUpForm;
   
 

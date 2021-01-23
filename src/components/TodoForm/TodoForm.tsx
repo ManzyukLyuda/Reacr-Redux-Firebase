@@ -1,5 +1,6 @@
 import React from "react";
 import {useForm} from "react-hook-form";
+import { useSelector } from "react-redux";
 import ToDo from "../../models/ToDo";
 import User from "../../models/User";
 import "./TodoForm.css";
@@ -11,15 +12,15 @@ interface Props {
         description: string,  
         assignedTo: string
     }) => void,
-    users:  User[]
 }
 
 const AddTodoForm:React.FC<Props> = (props: Props) => {
-
-    const {onTodoAdd, users} = props;
+    const { onTodoAdd } = props;
+    const users = useSelector((state: any) =>  state.getUsers.users);
     const { register,  handleSubmit, errors, reset} = useForm<ToDo>();
-    const onSubmit = async (data: { name: string, description: string,  assignedTo: string }) => {
-        await onTodoAdd(data);
+    
+    const onSubmit = (data: { name: string, description: string,  assignedTo: string }) => {
+        onTodoAdd(data); 
         reset();
       };
     
@@ -58,7 +59,7 @@ const AddTodoForm:React.FC<Props> = (props: Props) => {
                 <label htmlFor="assignedTo" className="control-label">Assigned to</label>
                 <select name="assignedTo" ref={register} role="assignedTo">
                     {
-                        users.map(user => {
+                        users.map( (user:User) => {
                         return <option key = {user.uid} value={user.email}>{user.email}</option>
                         })
                     }

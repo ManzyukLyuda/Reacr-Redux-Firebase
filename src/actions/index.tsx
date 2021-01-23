@@ -60,7 +60,7 @@ const deleteTodo = (id: number) => {
         payload: {
             id
         }
-        }
+    }
   }
 
   const usersLoaded = (users: User[]) => {

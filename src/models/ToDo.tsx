@@ -2,7 +2,7 @@ import Collaborator from "./Collaborator";
 import Comment from "./Comment"
 
 type ToDo =  {
-    id: number,
+    id: string,
     name: string,
     description: string,
     completed: Boolean,

@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ToDo from "../../models/ToDo";
 import "./TodoList.css";
 import TodoItem  from '../TodoItem/TodoItem'
+import { FirebaseContext } from '../../services/firebase-service';
 
 interface Props {
-    onDeleteItem: (id: number) => void
-    onToggleItem: (id: number) => void
+    onDeleteItem: (id: string) => void
+    onToggleItem: (todo: ToDo) => void
 }
 
 const TodoList: React.FC<Props> = (props: Props)=>{
     const { onDeleteItem, onToggleItem } = props;
+    const { api } = useContext(FirebaseContext);
     const todos = useSelector((state: any) =>  state.todos);
+    useEffect(( ) => {
+        api.getTodos()
+    }, [])
     
-   
+    console.log('получает из редакса', todos);
     return(
         <ul className="todo-list">
             {

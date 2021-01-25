@@ -3,8 +3,14 @@ import ToDoActions from "../models/ToDoActions"
 
 
 
-const todo = (state: ToDo | undefined, action: ToDoActions) => {
+const todo = (state: ToDo | undefined, action: ToDoActions ) => {
     switch(action.type){
+        case 'UPDATE_TODOS':
+            return{
+                ...state,
+                comments: state?.comments ?? [],
+                collaborators: state?.collaborators ?? []
+            }
         case 'ADD_TODO':
             return {
                 id: action.payload.id,

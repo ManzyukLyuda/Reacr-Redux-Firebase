@@ -1,6 +1,6 @@
 import axios from 'axios';
 import User from '../models/User'
-import API_URL from "../config/config";
+import { API_URL } from "../config/config";
 
 export async function getUserList(
 ): Promise<User[]> {

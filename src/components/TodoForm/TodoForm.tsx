@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {useForm} from "react-hook-form";
 import { useSelector } from "react-redux";
 import ToDo from "../../models/ToDo";
 import User from "../../models/User";
+import { Database } from "../../services/firebase-service";
 import "./TodoForm.css";
+import { FirebaseContext } from '../../services/firebase-service';
 
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 }
 
 const AddTodoForm:React.FC<Props> = (props: Props) => {
+    const { api } = useContext(FirebaseContext);
     const { onTodoAdd } = props;
     const users = useSelector((state: any) =>  state.getUsers.users);
     const { register,  handleSubmit, errors, reset} = useForm<ToDo>();
@@ -23,7 +26,11 @@ const AddTodoForm:React.FC<Props> = (props: Props) => {
         onTodoAdd(data); 
         reset();
       };
-    
+
+    useEffect(( ) => {
+        api.getUsers()
+    }, [])
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="form">
             <div className='input-field'>

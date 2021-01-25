@@ -1,6 +1,14 @@
+import ToDo from '../models/ToDo';
 import User from '../models/User';
 
-const addTodo = (name: string, description: string, assignedTo: string, id: number) => {
+const updateTodosFromFirebase = (todos: ToDo[]) => {
+    return{
+        type: 'UPDATE_TODOS',
+        payload: todos
+    }
+}
+
+const addTodo = (name: string, description: string, assignedTo: string, id: string) => {
     return {
         type: 'ADD_TODO',
         payload:{
@@ -12,7 +20,7 @@ const addTodo = (name: string, description: string, assignedTo: string, id: numb
     }
 }
 
-const addComment = (author: string, comment: string, parentTodo: number, id: number) => {
+const addComment = (author: string, comment: string, parentTodo: string, id: number) => {
     return {
         type: 'ADD_COMMENT',
         payload: {
@@ -24,7 +32,7 @@ const addComment = (author: string, comment: string, parentTodo: number, id: num
     }
 }
 
-const addCollaborator = (collaborator: string, parentTodo: number) => {
+const addCollaborator = (collaborator: string, parentTodo: string) => {
     return {
         type: 'ADD_COLLABORATOR',
         payload: {
@@ -45,7 +53,7 @@ const userLogOut = () => {
         type: 'USER_LOG_OUT'
     }
 }
-const toggleTodo = (id: number) => {
+const toggleTodo = (id: string) => {
     return{
         type: 'TOGGLE_TODO',
         payload:{
@@ -54,7 +62,7 @@ const toggleTodo = (id: number) => {
     }
 }
 
-const deleteTodo = (id: number) => {
+const deleteTodo = (id: string) => {
     return {
         type: 'DELETE_TODO',
         payload: {
@@ -72,6 +80,7 @@ const deleteTodo = (id: number) => {
 
 
 export {
+    updateTodosFromFirebase,
     addTodo,
     addComment,
     addCollaborator,

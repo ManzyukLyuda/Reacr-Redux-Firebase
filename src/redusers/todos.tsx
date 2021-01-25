@@ -11,6 +11,9 @@ const initialState: State = [];
 
 const todos = (state: State = initialState, action: ToDoActions) => {
     switch(action.type){
+        case 'UPDATE_TODOS':
+            return action.payload.map(t => todo(t, action));
+
         case 'ADD_TODO':
             return [
                 ...state,
@@ -38,7 +41,6 @@ const todos = (state: State = initialState, action: ToDoActions) => {
 
         case 'ADD_COLLABORATOR':
             return state.map(t => {
-                    console.log(action.payload)
                     if (t.id === action.payload.parentTodo){
                         return todo(t, action)
                     }

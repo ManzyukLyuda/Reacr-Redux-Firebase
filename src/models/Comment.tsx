@@ -2,7 +2,7 @@ type Comment = {
     id: number
     author: string,
     comment: string,
-    parentTodo: number
+    parentTodo: string
 }
 
 export default Comment

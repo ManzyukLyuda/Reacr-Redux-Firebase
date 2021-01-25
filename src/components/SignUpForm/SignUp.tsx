@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import {useForm} from "react-hook-form";
-import { Firebase, Database } from "../../services/firebase-service";
+import { Firebase,  Database } from "../../services/firebase-service";
 import {SignUpFormData, ErrorData} from "../../models/SignUpForm";
 import { useHistory } from "react-router-dom";
 import { user } from "firebase-functions/lib/providers/auth";
@@ -31,7 +31,6 @@ const SignUpForm: React.FC =() => {
         setErroMessages({code: error.code, message: error.message}); 
       })
       .then( function(userCredential:any){
-        console.log(userCredential)
         if(userCredential.additionalUserInfo){
           const user = {
             uid: userCredential.user.uid,

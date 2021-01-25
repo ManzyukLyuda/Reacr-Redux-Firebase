@@ -5,8 +5,8 @@ import CommentList from "../CommentList/CommentList";
 
 interface Props {
     todo: ToDo,
-    onDeleteItem: (id: number) => void
-    onToggleItem: (id: number) => void
+    onDeleteItem: (id: string) => void
+    onToggleItem: (todo: ToDo) => void
 }
 
 const TodoList: React.FC<Props> = (props: Props)=>{
@@ -19,7 +19,7 @@ const TodoList: React.FC<Props> = (props: Props)=>{
                 </h5>
                 {todo.completed ? 
                     <button className="btn btn-red" onClick = {()=>{onDeleteItem(todo.id)}}>Delete</button> :
-                    <button className="btn" onClick = {()=>{onToggleItem(todo.id)}}>Done</button>
+                    <button className="btn" onClick = {()=>{onToggleItem(todo)}}>Done</button>
                 }
             </div>
             <p className="todo-item_description">{todo.description}</p>

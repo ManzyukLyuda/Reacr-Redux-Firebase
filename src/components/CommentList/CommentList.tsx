@@ -6,6 +6,7 @@ import User from '../../models/User'
 import './CommentList.css'
 import { useSelector } from 'react-redux'
 
+
 type Props = {
     todo: ToDo,
 }

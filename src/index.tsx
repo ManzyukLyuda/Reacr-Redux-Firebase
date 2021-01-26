@@ -6,8 +6,6 @@ import App from './components/App/App';
 import FirebaseProvider from './services/firebase-service'
 
 
-
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

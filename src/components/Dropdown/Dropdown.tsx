@@ -1,9 +1,4 @@
 import React from "react";
-// import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import { useDispatch } from "react-redux";
-import { addCollaborator } from "../../actions";
-// import User from "../../models/User";
 import Dropdown from 'react-bootstrap/Dropdown';
 import './Dropdown.css'
 import { SelectCallback } from "react-bootstrap/esm/helpers";

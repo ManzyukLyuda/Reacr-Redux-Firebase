@@ -8,6 +8,20 @@ const updateTodosFromFirebase = (todos: ToDo[]) => {
     }
 }
 
+const firebaseStartLoading = ()=>{
+    return{
+        type: 'FIREBASE_START_LOADING',
+        payload: true
+    }
+}
+
+const firebaseEndLoading = ()=>{
+    return{
+        type: 'FIREBASE_END_LOADED',
+        payload: false
+    }
+}
+
 const addTodo = (name: string, description: string, assignedTo: string, id: string) => {
     return {
         type: 'ADD_TODO',
@@ -20,7 +34,7 @@ const addTodo = (name: string, description: string, assignedTo: string, id: stri
     }
 }
 
-const addComment = (author: string, comment: string, parentTodo: string, id: number) => {
+const addComment = (author: string, comment: string, parentTodo: string, id: string) => {
     return {
         type: 'ADD_COMMENT',
         payload: {
@@ -81,6 +95,8 @@ const deleteTodo = (id: string) => {
 
 export {
     updateTodosFromFirebase,
+    firebaseStartLoading,
+    firebaseEndLoading,
     addTodo,
     addComment,
     addCollaborator,

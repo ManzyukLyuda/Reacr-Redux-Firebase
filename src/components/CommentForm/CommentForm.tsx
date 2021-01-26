@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useForm } from "react-hook-form";
 import User from '../../models/User';
-import { useDispatch } from 'react-redux';
-import { addComment } from '../../actions';
+import { useContext } from 'react';
+import { FirebaseContext } from '../../services/firebase-service';
 
 interface Props{
     todoId: string
@@ -11,14 +11,13 @@ interface Props{
 
 
 const CommentForm: React.FC<Props>= (props: Props) => {
-    const  { todoId, user } = props;
     const { register, handleSubmit, formState, reset } = useForm({ mode: 'onChange' });
-    const dispatch  = useDispatch();
-    let nextCommnetId = 1;
+    const { api } = useContext(FirebaseContext);
 
     const handlerSubmitComment = (data: any) => {
+        const  { todoId, user } = props;
+        api.addComment(todoId, user.email, data.comment)
         
-        dispatch(addComment(user.email, data.comment, todoId, nextCommnetId++))
         reset();
     }
 
@@ -35,7 +34,7 @@ const CommentForm: React.FC<Props>= (props: Props) => {
                     defaultValue='' 
                     data-testid="textarea"
                 ></textarea>
-
+                
                 <button 
                     type='submit' 
                     disabled={!formState.isValid} 

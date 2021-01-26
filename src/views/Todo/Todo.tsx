@@ -2,18 +2,12 @@ import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import TodoForm from "../../components/TodoForm/TodoForm"
 import TodoList from "../../components/TodoList/TodoList";
-import { deleteTodo, toggleTodo, userLogOut} from "../../actions"
-import User from "../../models/User";
+import { userLogOut} from "../../actions"
 import { FirebaseContext, Firebase } from '../../services/firebase-service';
 import ToDo from "../../models/ToDo";
 
-
-
-
-let nextTodoId = 0;
-
 const TodoPage: React.FC = () => {
-    const { app, api } = useContext(FirebaseContext);
+    const { api } = useContext(FirebaseContext);
     const dispatch = useDispatch();
 
     
@@ -37,7 +31,7 @@ const TodoPage: React.FC = () => {
         description: string,  
         assignedTo: string
     })=>{
-        api.addTodo(data, nextTodoId++)
+        api.addTodo(data)
         // var updates:any = {};
         // updates['todos/' + nextTodoId++] ={
         //     ...data,

@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ToDo from "../../models/ToDo";
 import User from "../../models/User";
-import { addCollaborator } from "../../actions";
 import Dropdown from "../Dropdown/Dropdown";
+import { useContext } from "react";
+import { FirebaseContext } from "../../services/firebase-service";
 
 interface Props {
     todo: ToDo
@@ -12,15 +13,14 @@ interface Props {
 
 const CollaboratorsSelect: React.FC<Props> = (props: Props) => {
     const users = useSelector((state: any) =>  state.getUsers.users);
-    const dispatch = useDispatch();
+    const { api } = useContext(FirebaseContext);
     const { todo } = props;
-
     let UsersToAdd = users.map( (user: User) => user.email)
-                          .filter( (user:string) => !todo.collaborators.includes(user)); 
+                          .filter( (user:string) => !Object.values(todo.collaborators).includes(user)); 
     
     
     const dropdownOnChange = (data: any)=> {
-            dispatch(addCollaborator(data, todo.id));
+            api.addCollaborator(data, todo.id)
         }
 
     return(

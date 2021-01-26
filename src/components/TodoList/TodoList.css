@@ -21,6 +21,7 @@
     color: #212121;
     font-size: 24px;
     font-weight: 300;
+    margin: 0 1em 0;
 }
 
 .todo-item_description{

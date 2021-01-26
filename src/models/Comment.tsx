@@ -1,5 +1,5 @@
 type Comment = {
-    id: number
+    id: string,
     author: string,
     comment: string,
     parentTodo: string

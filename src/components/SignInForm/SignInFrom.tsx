@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { userLogIn } from '../../actions';
 import { useDispatch } from 'react-redux';
 import { FormData, errorData } from '../../models/SignInForm';
+import {firebaseStartLoading, firebaseEndLoading} from '../../actions'
 
 const SignInForm: React.FC = ( {} ) => {
     const dispatch = useDispatch();
@@ -20,9 +21,11 @@ const SignInForm: React.FC = ( {} ) => {
     const { register, handleSubmit, errors } = useForm<FormData>();
 
     const onSubmit = handleSubmit((data: FormData) => {
+      dispatch(firebaseStartLoading())
       Firebase.auth().signInWithEmailAndPassword(data.email, data.password)
         .then(function(user){
           onSignUpHendler(user.user!.email!);
+          dispatch(firebaseEndLoading())
         })
         .catch(function(error) {
           setErroMessages({code: error.code, message: error.message});

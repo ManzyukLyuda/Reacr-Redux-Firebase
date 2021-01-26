@@ -14,9 +14,11 @@ interface IFirebaseContext {
   api: {
     getUsers: () => void,
     getTodos: () => void,
-    addTodo: (todo: {name: string, description: string; assignedTo: string; id?: number}, todoId: number) => void,
+    addTodo: (todo: {name: string, description: string; assignedTo: string; id?: number}) => void,
     deleteTodo: (id: string) => void,
-    toggleTodo: (todo: ToDo) => void
+    toggleTodo: (todo: ToDo) => void,
+    addComment: (parentTodo: string, user: string, comment: string) => void,
+    addCollaborator: (collaborator: string, parentTodo: string) => void,
   }
 }
 
@@ -30,9 +32,9 @@ export default ({children}: any) => {
     const dispatch = useDispatch();
     const getTodos = () =>  {
       Database.ref('todos/').on('value', (snapshot) => {
-          const data = snapshot.val() ?? {};
-          dispatch(actions.updateTodosFromFirebase(Object.values(data)))
-      
+          let todos = snapshot.val() ?? {};
+          todos = Object.values(todos);
+          dispatch(actions.updateTodosFromFirebase(todos))
       })
   }
 
@@ -44,18 +46,17 @@ export default ({children}: any) => {
       })
   }
 
-  function addTodo(todo: {name: string, description: string; assignedTo: string; id?: number}, todoId: number){
+  function addTodo(todo: {name: string, description: string; assignedTo: string; id?: number}){
       let todoRef = Database.ref('todos/').push();
+      // dispatch(actions.firebaseStartLoading())
       todoRef.set({
         ...todo,
         id: todoRef.key
       })
       .then((doc) => {
-          // nothing to do here since you already have a 
-          // connection pulling updates to Todos
+        // dispatch(actions.firebaseEndLoading())
       })
       .catch((error) => {
-          // dispatch(todoActions.showError("Error adding Todo to database"));
           console.error(error);
       })
   }
@@ -69,6 +70,33 @@ export default ({children}: any) => {
     Database.ref().update(updates);
   }
 
+  function addComment(parentTodo: string, user: string, comment: string){
+    let commentRef = Database.ref(`todos/${parentTodo}/comments/`).push();
+    console.log('push')
+    commentRef.set({
+      id: commentRef.key,
+      author: user,
+      comment: comment,
+      parentTodo: parentTodo
+    }).then((doc) => {
+      console.log('render')
+    })
+    .catch((error) => {
+        // dispatch(actions.addComment(commentRef.key || parentTodo, user, comment, parentTodo))
+        console.error(error);
+    })
+  }
+
+  function addCollaborator(collaborator: string, parentTodo: string){
+    let collaboratorRef = Database.ref(`todos/${parentTodo}/collaborators/`).push();
+    collaboratorRef.set(collaborator).then((doc) => {
+    })
+    .catch((error) => {
+        // dispatch(actions.addCollaborator(collaborator, parentTodo));
+        console.error(error);
+    })
+  }
+
   const app = {
       app: Firebase,
       // database: Database,
@@ -77,7 +105,9 @@ export default ({children}: any) => {
           getUsers,
           addTodo,
           deleteTodo,
-          toggleTodo
+          toggleTodo,
+          addComment,
+          addCollaborator
       }
   }
 

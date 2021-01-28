@@ -1,7 +1,7 @@
 export type SignUpFormData = {
     email: string;
-    password1: string;
-    password2: string;
+    password: string;
+    passwordConfirmation: string;
   }
 
 export type ErrorData = {

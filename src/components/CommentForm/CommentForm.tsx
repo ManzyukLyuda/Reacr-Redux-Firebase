@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { useForm } from "react-hook-form";
-import User from '../../models/User';
 import { useContext } from 'react';
 import { FirebaseContext } from '../../services/firebase-service';
 
 interface Props{
     todoId: string
-    user: User,
+    user: { email: string },
 }
 
 

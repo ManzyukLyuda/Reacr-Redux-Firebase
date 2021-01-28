@@ -10,16 +10,16 @@ import CommentForm from '../CommentForm/CommentForm';
 describe('<CommentList />', () => {
     it('render CommentList', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: false,
-                assignedTo: 'user@test.com',
-                comments: [],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: false,
+				assignedTo: 'user@test.com',
+				comments: [],
+				collaborators: [],
+			},
+		};
         const wrapper = shallow( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper>);
        
         expect(wrapper.find(CommentList)).to.be.ok;
@@ -27,16 +27,16 @@ describe('<CommentList />', () => {
 
     it('render one ul', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: false,
-                assignedTo: 'user@test.com',
-                comments: [],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: false,
+				assignedTo: 'user@test.com',
+				comments: [],
+				collaborators: [],
+			},
+		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('ul').length).to.be.equal(1);
@@ -44,16 +44,16 @@ describe('<CommentList />', () => {
 
     it('render no li, with no comments', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: false,
-                assignedTo: 'user@test.com',
-                comments: [],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: false,
+				assignedTo: 'user@test.com',
+				comments: [],
+				collaborators: [],
+			},
+		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('li').length).to.be.equal(0);
@@ -61,16 +61,16 @@ describe('<CommentList />', () => {
 
     it('render one h6 title', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: false,
-                assignedTo: 'user@test.com',
-                comments: [],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: false,
+				assignedTo: 'user@test.com',
+				comments: [],
+				collaborators: [],
+			},
+		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('h6').length).to.be.equal(1);
@@ -79,23 +79,23 @@ describe('<CommentList />', () => {
 
     it('render one li, for one comment', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: false,
-                assignedTo: 'user@test.com',
-                comments: [
-                    {
-                        id: 0,
-                        author: 'test@user.com',
-                        comment: 'test',
-                        parentTodo: 0
-                    }
-                ],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: false,
+				assignedTo: 'user@test.com',
+				comments: [
+					{
+						id: 'tetsComment',
+						author: 'test@user.com',
+						comment: 'test',
+						parentTodo: 'tets',
+					},
+				],
+				collaborators: [],
+			},
+		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find('li').length).to.be.equal(1);
@@ -103,16 +103,16 @@ describe('<CommentList />', () => {
 
     it('render CommentForm for not completed task', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: false,
-                assignedTo: 'user@test.com',
-                comments: [],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: false,
+				assignedTo: 'user@test.com',
+				comments: [],
+				collaborators: [],
+			},
+		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find(CommentForm).length).to.be.equal(1);
@@ -120,16 +120,16 @@ describe('<CommentList />', () => {
 
     it('render no CommentForm for completed task', () => {
         const props = {
-            todo: {
-                id: 0, 
-                name: 'test',
-                description: 'test',
-                completed: true,
-                assignedTo: 'user@test.com',
-                comments: [],
-                collaborators: []
-            }
-        }
+			todo: {
+				id: 'tets',
+				name: 'test',
+				description: 'test',
+				completed: true,
+				assignedTo: 'user@test.com',
+				comments: [],
+				collaborators: [],
+			},
+		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
         expect(wrapper.find(CommentForm).length).to.be.equal(0);
@@ -138,17 +138,17 @@ describe('<CommentList />', () => {
     it('each li should contain comment and author', () => {
         const props = {
             todo: {
-                id: 0, 
+                id: 'tets', 
                 name: 'test',
                 description: 'test',
                 completed: true,
                 assignedTo: 'user@test.com',
                 comments: [
                     {
-                        id: 0,
+                        id: 'testComment',
                         author: 'test@user.com',
                         comment: 'test',
-                        parentTodo: 0
+                        parentTodo: 'tets'
                     }
                 ],
                 collaborators: []

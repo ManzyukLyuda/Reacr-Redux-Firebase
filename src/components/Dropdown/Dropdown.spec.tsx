@@ -48,18 +48,18 @@ describe('<Dropdown />', () => {
     //     expect(wrapper.find('.btn.btn-circle').length).to.equal(1)
     //   })
 
-    //   it('should desplay DropdownMenu', () => {
-    //     const props = {
-    //         onSelect: () => null,
-    //         users: ['test@user.com']
-    //     }
-    //     const wrapper = mount(<TestStoreWrapper>
-    //                                 <Dropdown {... props} />
-    //                             </TestStoreWrapper>);
+      it('should desplay DropdownMenu', () => {
+        const props = {
+            onSelect: () => null,
+            users: ['test@user.com']
+        }
+        const wrapper = mount(<TestStoreWrapper>
+                                    <Dropdown {... props} />
+                                </TestStoreWrapper>);
 
-    //     expect(wrapper.find(Dropdown).length).to.be.ok;
-    //     expect(wrapper.find(DropdownMenu).length).to.equal(1)
-    //   })
+        expect(wrapper.find(Dropdown).length).to.be.ok;
+        expect(wrapper.find(DropdownMenu).length).to.equal(1)
+      })
 
       it('calls dropdownOnChange()', () => {
         const props = {

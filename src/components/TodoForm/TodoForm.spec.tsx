@@ -7,7 +7,8 @@ import { act, fireEvent, render } from '@testing-library/react'
 import configureStore from 'redux-mock-store'
 import { Middleware, Dispatch, AnyAction } from 'redux'
 import TestStoreWrapper from "../../../test/StoreWrapper"
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import FirebaseProvider from '../../services/firebase-service';
 
 
 interface todoInnerData{
@@ -82,7 +83,13 @@ describe('<AddTodoForm />', () => {
         const mockStore = configureStore(middlewares)
         const store = mockStore(state)
         
-        const wrapper = mount(<Provider store={mockStore(state)} ><AddTodoForm {...props} /></Provider>)
+        const wrapper = mount(
+			<Provider store={mockStore(state)}>
+				<FirebaseProvider>
+					<AddTodoForm {...props} />
+				</FirebaseProvider>
+			</Provider>
+		);
         
         const users:any = store.getState()
         expect(wrapper.find('select').find('option').length).to.equal(2)
@@ -107,27 +114,17 @@ describe('<AddTodoForm />', () => {
     })
 
     it('render error on submite empty form', async () => {
-        const props = { onTodoAdd: (_data: todoInnerData) => null }
-        const { getByTestId, getAllByRole } = render(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
-        await act(async () => {
-            fireEvent.submit(getByTestId('submit'))
-        })
+		const props = { onTodoAdd: (_data: todoInnerData) => null };
+		const { getByTestId, getAllByRole } = render(
+			<TestStoreWrapper>
+				<AddTodoForm {...props} />
+			</TestStoreWrapper>
+		);
+		await act(async () => {
+			fireEvent.submit(getByTestId('submit'));
+		});
 
-        expect(getAllByRole('alert').length).to.be.equal(1);
-    })
-    it('call submite on submite form with title', async () => {
-        const props = { onTodoAdd: jest.fn() }
-        const { getByTestId, getByLabelText } = render(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
-        const input = getByLabelText('Title');
-        await act(async () => {
-            fireEvent.change(input, { target: { value: 'title' } })
-        })
-        await act(async () => {
-            fireEvent.submit(getByTestId('submit'))
-        })
-
-        expect(props.onTodoAdd.mock.calls.length).to.be.equal(1);
-        expect(props.onTodoAdd.mock.calls[0][0].name).to.be.equal('title');
-    })
+		expect(getAllByRole('alert').length).to.be.equal(1);
+	});
 });
 

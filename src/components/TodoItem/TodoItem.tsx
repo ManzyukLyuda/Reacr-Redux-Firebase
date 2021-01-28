@@ -10,29 +10,43 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = (props: Props)=>{
-    const {todo, onDeleteItem, onToggleItem} = props;
-    const collaborators = Object.values(todo.collaborators);
-    console.log(collaborators)
-    return(
-        <li key={todo.id} className={`todo-item ${todo.completed && "todo-item___done"}`}>
-            <div className="todo-item_title" >
-                <h5>
-                    {todo.name}
-                </h5>
-                {todo.completed ? 
-                    <button className="btn btn-red" onClick = {()=>{onDeleteItem(todo.id)}}>Delete</button> :
-                    <button className="btn" onClick = {()=>{onToggleItem(todo)}}>Done</button>
-                }
-            </div>
-            <p className="todo-item_description">{todo.description}</p>
-            <p className="todo-item_assigned">Assigned to {todo.assignedTo}</p>
-            <div className="todo-item_collaborators">
-                Collaborators: {collaborators.map(collaborator => collaborator + ', ')}
-                <CollaboratorsSelect todo={todo}/>
-            </div>
-            <CommentList todo={todo} />                        
-        </li>
-    )
+	const { todo, onDeleteItem, onToggleItem } = props;
+	const collaborators = Object.values(todo.collaborators!);
+
+	return (
+		<li
+			key={todo.id}
+			className={`todo-item ${todo.completed && 'todo-item___done'}`}>
+			<div className='todo-item_title'>
+				<h5>{todo.name}</h5>
+				{todo.completed ? (
+					<button
+						className='btn btn-red'
+						onClick={() => {
+							onDeleteItem(todo.id);
+						}}>
+						Delete
+					</button>
+				) : (
+					<button
+						className='btn'
+						onClick={() => {
+							onToggleItem(todo);
+						}}>
+						Done
+					</button>
+				)}
+			</div>
+			<p className='todo-item_description'>{todo.description}</p>
+			<p className='todo-item_assigned'>Assigned to {todo.assignedTo}</p>
+			<div className='todo-item_collaborators'>
+				Collaborators:{' '}
+				{collaborators.map((collaborator) => collaborator + ', ')}
+				<CollaboratorsSelect todo={todo} />
+			</div>
+			<CommentList todo={todo} />
+		</li>
+	);
 }
 
 

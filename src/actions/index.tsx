@@ -1,93 +1,60 @@
+import { ErrorData } from '../models/SignUpForm';
 import ToDo from '../models/ToDo';
 import User from '../models/User';
+import actionTypes from '../reducers/actionTypes';
 
 const updateTodosFromFirebase = (todos: ToDo[]) => {
     return{
-        type: 'UPDATE_TODOS',
+        type: actionTypes.todos.UPDATE_TODOS,
         payload: todos
     }
 }
 
 const firebaseStartLoading = ()=>{
     return{
-        type: 'FIREBASE_START_LOADING',
+        type: actionTypes.loading.FIREBASE_START_LOADING,
         payload: true
     }
 }
 
 const firebaseEndLoading = ()=>{
     return{
-        type: 'FIREBASE_END_LOADED',
+        type: actionTypes.loading.FIREBASE_END_LOADING,
         payload: false
     }
 }
-
-const addTodo = (name: string, description: string, assignedTo: string, id: string) => {
-    return {
-        type: 'ADD_TODO',
-        payload:{
-            id,
-            name,
-            description,
-            assignedTo
-        }
-    }
-}
-
-const addComment = (author: string, comment: string, parentTodo: string, id: string) => {
-    return {
-        type: 'ADD_COMMENT',
+const firebaseGetError = (error: ErrorData)=>{
+    return{
+        type: actionTypes.error.FIREBASE_GET_ERROR,
         payload: {
-            id,
-            author,
-            comment,
-            parentTodo
+            code: error.code,
+            message: error.message
         }
+    }
+}
+const firebaseClearError = ()=>{
+    return{
+        type: actionTypes.error.FIREBASE_CLEAR_ERROR
     }
 }
 
-const addCollaborator = (collaborator: string, parentTodo: string) => {
-    return {
-        type: 'ADD_COLLABORATOR',
-        payload: {
-            collaborator,
-            parentTodo
-        }
-    }
-}
 
 const userLogIn = (user: string) => {
     return {
-        type: 'USER_LOG_IN',
+        type: actionTypes.logIn.USER_LOG_IN,
         user,
     }
 }
 const userLogOut = () => {
     return {
-        type: 'USER_LOG_OUT'
-    }
-}
-const toggleTodo = (id: string) => {
-    return{
-        type: 'TOGGLE_TODO',
-        payload:{
-            id
-        }
+        type: actionTypes.logIn.USER_LOG_OUT
     }
 }
 
-const deleteTodo = (id: string) => {
-    return {
-        type: 'DELETE_TODO',
-        payload: {
-            id
-        }
-    }
-  }
 
   const usersLoaded = (users: User[]) => {
     return {
-      type: 'USERS_LOADED',
+      type: actionTypes.users.GET_USERS,
       payload: users
     };
   };
@@ -97,12 +64,9 @@ export {
     updateTodosFromFirebase,
     firebaseStartLoading,
     firebaseEndLoading,
-    addTodo,
-    addComment,
-    addCollaborator,
+    firebaseGetError,
+    firebaseClearError,
     userLogIn,
-    toggleTodo,
-    deleteTodo,
     usersLoaded,
     userLogOut
 };

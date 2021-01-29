@@ -1,21 +1,14 @@
 import React, { useContext } from 'react';
-import { useDispatch } from 'react-redux';
 import TodoForm from '../TodoForm/TodoForm';
 import TodoList from '../TodoList/TodoList';
-import { userLogOut } from '../../actions';
 import { FirebaseContext, Firebase } from '../../services/firebase-service';
 import ToDo from '../../models/ToDo';
 
 const TodoPage: React.FC = () => {
 	const { api } = useContext(FirebaseContext);
-	const dispatch = useDispatch();
 
 	const onSignOut = () => {
-		Firebase.auth()
-			.signOut()
-			.then(function () {
-				dispatch(userLogOut());
-			});
+		api.signOut();
 	};
 
 	const onDeleteItem = (id: string) => {

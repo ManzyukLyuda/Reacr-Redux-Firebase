@@ -5,15 +5,15 @@ interface State {
 	firebaseError: ErrorData | null;
 }
 
-const initialState = {
+export const initialState = {
 	firebaseError: null,
 };
 
-interface ActionFirebaseGetError {
+export interface ActionFirebaseGetError {
 	type: typeof actionTypes.error.FIREBASE_GET_ERROR;
 	payload: ErrorData;
 }
-interface ActionFirebaseClearError {
+export interface ActionFirebaseClearError {
 	type: typeof actionTypes.error.FIREBASE_CLEAR_ERROR;
 	payload: null;
 }

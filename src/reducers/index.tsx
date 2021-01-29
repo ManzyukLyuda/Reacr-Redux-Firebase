@@ -5,6 +5,7 @@ import { getUsers } from './users';
 import { isLoading } from './loading';
 import { firebaseError } from './error';
 
+
 const rootReducer: Reducer = combineReducers({
 	todos,
 	logInUser,

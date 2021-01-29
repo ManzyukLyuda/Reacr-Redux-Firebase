@@ -12,8 +12,13 @@ import { SignUpFormData } from '../models/SignUpForm';
 
 interface IFirebaseContext {
 	api: {
-		signUpUser: (data: { email: string; password: string, passwordConfirmation: string}) => Promise<any>;
-    	signInUser: (data: { email: string; password: string }) => Promise<any>;
+		signUpUser: (data: {
+			email: string;
+			password: string;
+			passwordConfirmation: string;
+		}) => Promise<any>;
+		signInUser: (data: { email: string; password: string }) => Promise<any>;
+		signOut: () => void;
 		getUsers: () => void;
 		getTodos: () => void;
 		addTodo: (todo: {
@@ -32,57 +37,65 @@ interface IFirebaseContext {
 const FirebaseContext = React.createContext({} as IFirebaseContext);
 const Firebase = firebase.initializeApp(firebaseConfig);
 const Database = firebase.database();
-
 export { FirebaseContext, Firebase, Database };
 
-export default ({ children }: any) => {
+type Props = {
+	children: JSX.Element;
+};
+
+export default ({ children }: Props) => {
 	const dispatch = useDispatch();
 	const signUpUser = (data: SignUpFormData) => {
 		dispatch(actions.firebaseStartLoading());
 		dispatch(actions.firebaseClearError());
-		return  new Promise((resolve,reject)=> {
+		return new Promise((resolve, reject) => {
 			Firebase.auth()
-			.createUserWithEmailAndPassword(data.email, data.password)
-			.then(function (userCredential: any) {
-				if (userCredential.additionalUserInfo) {
-					const user = {
-						uid: userCredential.user.uid,
-						email: userCredential.user.email,
-					};
-					let updates: any = {};
-					updates['users/' + userCredential.user.uid] = user;
+				.createUserWithEmailAndPassword(data.email, data.password)
+				.then(function (userCredential : firebase.auth.UserCredential) {
+					if (userCredential.additionalUserInfo) {
+						const user = {
+							uid: userCredential.user!.uid,
+							email: userCredential.user!.email,
+						};
+						let updates: any = {};
+						updates['users/' + userCredential.user!.uid] = user;
 
-					Database.ref().update(updates);
-				}
-				dispatch(actions.firebaseEndLoading());
-				resolve({success :true}); 
-			})
-			.catch(function (error) {
-				dispatch(actions.firebaseGetError(error));
-				dispatch(actions.firebaseEndLoading());
-				reject(error); 
-			});
-		})
-		
-	}
-	const signInUser = (data: { email: string; password: string }) => {
-
-		return  new Promise((resolve,reject)=> {
-			Firebase.auth()
-			.signInWithEmailAndPassword(data.email, data.password)
-			.then(function (user) {
-				dispatch(actions.userLogIn(user.user!.email!));
-				dispatch(actions.firebaseEndLoading());
-				resolve({success :true}); 
-			})
-			.catch(function (error) {
-				dispatch(actions.firebaseGetError(error));
-				dispatch(actions.firebaseEndLoading());
-				reject(error); 
-			})
+						Database.ref().update(updates);
+					}
+					dispatch(actions.firebaseEndLoading());
+					resolve({ success: true });
+				})
+				.catch(function (error) {
+					dispatch(actions.firebaseGetError(error));
+					dispatch(actions.firebaseEndLoading());
+					reject(error);
+				});
 		});
-		
-	}
+	};
+	const signInUser = (data: { email: string; password: string }) => {
+		return new Promise((resolve, reject) => {
+			Firebase.auth()
+				.signInWithEmailAndPassword(data.email, data.password)
+				.then(function (user) {
+					dispatch(actions.userLogIn(user.user!.email!));
+					dispatch(actions.firebaseEndLoading());
+					resolve({ success: true });
+				})
+				.catch(function (error) {
+					dispatch(actions.firebaseGetError(error));
+					dispatch(actions.firebaseEndLoading());
+					reject(error);
+				});
+		});
+	};
+
+	const signOut = () => {
+		Firebase.auth()
+			.signOut()
+			.then(function () {
+				dispatch(actions.userLogOut());
+			});
+	};
 
 	const getTodos = () => {
 		Database.ref('todos/').on('value', (snapshot) => {
@@ -100,7 +113,7 @@ export default ({ children }: any) => {
 		});
 	};
 
-	const addTodo =(todo: {
+	const addTodo = (todo: {
 		name: string;
 		description: string;
 		assignedTo: string;
@@ -112,23 +125,22 @@ export default ({ children }: any) => {
 				...todo,
 				id: todoRef.key,
 			})
-			.then((doc) => {
-			})
+			.then((doc) => {})
 			.catch((error) => {
 				console.error(error);
 			});
-	}
+	};
 
 	const deleteTodo = (id: string) => {
 		Database.ref('todos/').child(id).remove();
-	}
+	};
 
 	const toggleTodo = (todo: ToDo) => {
 		const updates = {
 			['todos/' + todo.id]: { ...todo, completed: !todo.completed },
 		};
 		Database.ref().update(updates);
-	}
+	};
 
 	const addComment = (parentTodo: string, user: string, comment: string) => {
 		let commentRef = Database.ref(`todos/${parentTodo}/comments/`).push();
@@ -143,7 +155,7 @@ export default ({ children }: any) => {
 			.catch((error) => {
 				console.error(error);
 			});
-	}
+	};
 
 	const addCollaborator = (collaborator: string, parentTodo: string) => {
 		let collaboratorRef = Database.ref(
@@ -155,12 +167,13 @@ export default ({ children }: any) => {
 			.catch((error) => {
 				console.error(error);
 			});
-	}
+	};
 
 	const app = {
 		api: {
 			signUpUser,
-      		signInUser,
+			signInUser,
+			signOut,
 			getTodos,
 			getUsers,
 			addTodo,

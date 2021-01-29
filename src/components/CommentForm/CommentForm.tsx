@@ -13,12 +13,12 @@ const CommentForm: React.FC<Props>= (props: Props) => {
     const { register, handleSubmit, formState, reset } = useForm({ mode: 'onChange' });
     const { api } = useContext(FirebaseContext);
 
-    const handlerSubmitComment = (data: any) => {
-        const  { todoId, user } = props;
-        api.addComment(todoId, user.email, data.comment)
-        
-        reset();
-    }
+    const handlerSubmitComment = (data: { comment: string } | any) => {
+		const { todoId, user } = props;
+		api.addComment(todoId, user.email, data.comment);
+
+		reset();
+	};
 
     return  <form   
                 onSubmit={handleSubmit(handlerSubmitComment)} 

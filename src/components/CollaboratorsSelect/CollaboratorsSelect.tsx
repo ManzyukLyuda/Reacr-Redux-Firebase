@@ -23,9 +23,9 @@ const CollaboratorsSelect: React.FC<Props> = (props: Props) => {
 		); 
     
     
-    const dropdownOnChange = (data: any)=> {
-            api.addCollaborator(data, todo.id)
-        }
+    const dropdownOnChange = (data: string | null) => {
+		data && api.addCollaborator(data, todo.id);
+	};
 
     return(
         (UsersToAdd.length > 0) 

@@ -5,32 +5,27 @@ interface State {
             isLogedIn: boolean;
         }
 
-const initioalState = {
-    email: null, 
-    isLogedIn: false
-}
-
-interface ActionLogIn {type: typeof actionTypes.logIn.USER_LOG_IN, user: string};
-interface ActionLogOut {type: typeof actionTypes.logIn.USER_LOG_OUT, user?: null};
-type Action = ActionLogIn | ActionLogOut;
-
-const logInUser = (state: State = initioalState, action: Action) => {
-    switch (action.type){
-        case  actionTypes.logIn.USER_LOG_IN:
-            return {
-                email: action.user,
-                isLogedIn: true
-            }
-        
-        case actionTypes.logIn.USER_LOG_OUT:
-            return initioalState;
-        
-        default:
-            return state
-    }
+export const initialState = {
+	email: null,
+	isLogedIn: false,
 };
 
-export {
-    logInUser,
-    initioalState
+export interface ActionLogIn {type: typeof actionTypes.logIn.USER_LOG_IN, user: string};
+export interface ActionLogOut {type: typeof actionTypes.logIn.USER_LOG_OUT, user?: null};
+type Action = ActionLogIn | ActionLogOut;
+
+export const logInUser = (state: State = initialState, action: Action) => {
+	switch (action.type) {
+		case actionTypes.logIn.USER_LOG_IN:
+			return {
+				email: action.user,
+				isLogedIn: true,
+			};
+
+		case actionTypes.logIn.USER_LOG_OUT:
+			return initialState;
+
+		default:
+			return state;
+	}
 };

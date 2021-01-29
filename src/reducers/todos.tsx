@@ -1,8 +1,8 @@
 import ToDo from '../models/ToDo';
-import todo from './todo';
+import { todo } from './todo';
 import actionTypes from './actionTypes';
 
-interface UpdateTodos {
+export interface UpdateTodos {
 	type: typeof actionTypes.todos.UPDATE_TODOS;
 	payload: ToDo[];
 }
@@ -10,9 +10,9 @@ type Action = UpdateTodos;
 
 type State = ToDo[];
 
-const initialState: State = [];
+export const initialState: State = [];
 
-const todos = (state: State = initialState, action: Action) => {
+export const todos = (state: State = initialState, action: Action) => {
 	switch (action.type) {
 		case actionTypes.todos.UPDATE_TODOS:
 			return action.payload.map((t: ToDo) => todo(t, action));
@@ -24,4 +24,3 @@ const todos = (state: State = initialState, action: Action) => {
 	}
 };
 
-export { todos, initialState };

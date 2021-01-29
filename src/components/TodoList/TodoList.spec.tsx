@@ -15,6 +15,7 @@ const app = {
 			new Promise((resolve, reject) => (true ? resolve : reject)),
 		signInUser: () =>
 			new Promise((resolve, reject) => (true ? resolve : reject)),
+		signOut: () => {},
 		getTodos: () => {},
 		getUsers: () => {},
 		addTodo: () => {},

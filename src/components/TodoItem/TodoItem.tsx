@@ -1,6 +1,6 @@
 import React from "react";
 import ToDo from "../../models/ToDo";
-import CollaboratorsSelect from "../CollaborotarsSelect/CollaboratorsSelect";
+import CollaboratorsSelect from "../CollaboratorsSelect/CollaboratorsSelect";
 import CommentList from "../CommentList/CommentList";
 
 interface Props {
@@ -38,9 +38,11 @@ const TodoList: React.FC<Props> = (props: Props)=>{
 				)}
 			</div>
 			<p className='todo-item_description'>{todo.description}</p>
-			<p className='todo-item_assigned'>Assigned to {todo.assignedTo}</p>
+			<p className='todo-item_assigned'>
+				<strong>Assigned to</strong> {todo.assignedTo}
+			</p>
 			<div className='todo-item_collaborators'>
-				Collaborators:{' '}
+				<strong>Collaborators:{' '}</strong>
 				{collaborators.map((collaborator) => collaborator + ', ')}
 				<CollaboratorsSelect todo={todo} />
 			</div>

@@ -5,17 +5,17 @@ type State = {
 	users: User[];
 };
 
-const initialState = {
+export const initialState = {
 	users: [],
 };
 
-interface ActionGetUsers {
+export interface ActionGetUsers {
 	type: typeof actionTypes.users.GET_USERS;
 	payload: User[];
 }
 type Action = ActionGetUsers;
 
-const getUsers = (state: State = initialState, action: Action) => {
+export const getUsers = (state: State = initialState, action: Action) => {
 	switch (action.type) {
 		case actionTypes.users.GET_USERS:
 			return {
@@ -28,4 +28,5 @@ const getUsers = (state: State = initialState, action: Action) => {
 	}
 };
 
-export { getUsers, initialState };
+
+

@@ -1,13 +1,13 @@
 import ToDo from '../models/ToDo';
 import actionTypes from './actionTypes';
 
-interface UpdateTodos {
+export interface UpdateTodos {
 	type: typeof actionTypes.todos.UPDATE_TODOS;
 	payload?: ToDo[];
 }
 type Action = UpdateTodos;
 
-const todo = (state: ToDo | undefined, action: Action) => {
+export const todo = (state: ToDo | undefined, action: Action) => {
 	switch (action.type) {
 		case actionTypes.todos.UPDATE_TODOS:
 			return {
@@ -21,4 +21,4 @@ const todo = (state: ToDo | undefined, action: Action) => {
 	}
 };
 
-export default todo;
+

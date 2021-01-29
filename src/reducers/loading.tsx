@@ -4,15 +4,15 @@ interface State {
 	isLoading: boolean;
 }
 
-const initialState = {
+export const initialState = {
 	isLoading: false,
 };
 
-interface ActionFirebaseStartLoading {
+export interface ActionFirebaseStartLoading {
 	type: typeof actionTypes.loading.FIREBASE_START_LOADING;
 	payload: null;
 }
-interface ActionFirebaseENDLoading {
+export interface ActionFirebaseENDLoading {
 	type: typeof actionTypes.loading.FIREBASE_END_LOADING;
 	payload: null;
 }

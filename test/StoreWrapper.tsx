@@ -6,7 +6,7 @@ import { Middleware, Dispatch, AnyAction } from 'redux'
 
 
 interface Props {
-  children: any,
+  children: JSX.Element,
 }
 
 
@@ -42,9 +42,10 @@ const state = {
 const app = {
 	api: {
 		signUpUser: () =>
-			new Promise((resolve, reject) => (true ? resolve : reject)),
+			new Promise((resolve, reject) => (resolve || reject)),
 		signInUser: () =>
-			new Promise((resolve, reject) => (true ? resolve : reject)),
+			new Promise((resolve, reject) => (resolve || reject)),
+		signOut: () => {},
 		getTodos: () => {},
 		getUsers: () => {},
 		addTodo: () => {},

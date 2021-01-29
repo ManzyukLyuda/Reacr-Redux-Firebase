@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Router from './Router';
 import { MemoryRouter } from 'react-router-dom';
 import TestStoreWrapper from '../../../test/StoreWrapper';

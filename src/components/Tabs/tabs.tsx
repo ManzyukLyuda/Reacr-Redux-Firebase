@@ -4,9 +4,19 @@ import "./Tabs.css";
 
 const Tabs:React.FC = () => {
     let { url } = useRouteMatch();
-    return (<ul className="tabs">
-                <li className="tab"><NavLink to={`${url}/signin`} activeClassName="selected">Sign in</NavLink></li>
-                <li className="tab"><NavLink to={`${url}/signup`} activeClassName="selected">Register</NavLink></li>
-            </ul>)
+    return (
+		<ul className='tabs'>
+			<li className='tab'>
+				<NavLink to={`${url}/signin`} activeClassName='selected'>
+					Sign in
+				</NavLink>
+			</li>
+			<li className='tab'>
+				<NavLink to={`${url}/signup`} activeClassName='selected'>
+					Sign up
+				</NavLink>
+			</li>
+		</ul>
+	);
 }
 export default Tabs;

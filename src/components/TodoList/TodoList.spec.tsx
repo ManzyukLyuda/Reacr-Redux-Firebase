@@ -12,9 +12,9 @@ import { FirebaseContext } from '../../services/firebase-service';
 const app = {
 	api: {
 		signUpUser: () =>
-			new Promise((resolve, reject) => (true ? resolve : reject)),
+			new Promise(resolve =>  resolve),
 		signInUser: () =>
-			new Promise((resolve, reject) => (true ? resolve : reject)),
+			new Promise(resolve => resolve),
 		signOut: () => {},
 		getTodos: () => {},
 		getUsers: () => {},

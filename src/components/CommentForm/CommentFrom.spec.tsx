@@ -14,9 +14,9 @@ describe('<CommentForm />', () => {
 			},
 		};
 		const wrapper = shallow(
-			<TestStoreWrapper>
-				<CommentForm {...props} />{' '}
-			</TestStoreWrapper>
+			// <TestStoreWrapper>
+			<CommentForm {...props} />
+			// </TestStoreWrapper>
 		);
 
 		expect(wrapper.find(CommentForm)).to.be.ok;

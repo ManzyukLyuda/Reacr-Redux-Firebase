@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import Todo from './Todo';
 import TodoForm from '../TodoForm/TodoForm';
@@ -13,7 +12,7 @@ describe('<Todo />', () => {
 				<Todo />
 			</TestStoreWrapper>
 		);
-		expect(wrapper).to.be.ok;
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('render one H1 title', () => {
@@ -22,7 +21,7 @@ describe('<Todo />', () => {
 				<Todo />
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find('h1').length).to.be.equal(1);
+		expect(wrapper.find('h1').length).toBe(1);
 	});
 
 	it('render one Sign Out button', () => {
@@ -31,10 +30,8 @@ describe('<Todo />', () => {
 				<Todo />
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find('button.link').length).to.be.equal(1);
-		expect(wrapper.find('button.link').first().text()).to.be.equal(
-			'Sign Out'
-		);
+		expect(wrapper.find('button.link').length).toBe(1);
+		expect(wrapper.find('button.link').first().text()).toBe('Sign Out');
 	});
 
 	it('render one TodoForm', () => {
@@ -43,7 +40,7 @@ describe('<Todo />', () => {
 				<Todo />
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find(TodoForm).length).to.be.equal(1);
+		expect(wrapper.find(TodoForm).length).toBe(1);
 	});
 
 	it('render one TodoList', () => {
@@ -52,6 +49,6 @@ describe('<Todo />', () => {
 				<Todo />
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find(TodoList).length).to.be.equal(1);
+		expect(wrapper.find(TodoList).length).toBe(1);
 	});
 });

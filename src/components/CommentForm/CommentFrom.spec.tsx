@@ -1,7 +1,6 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import CommentForm from './CommentForm';
-import { expect } from 'chai';
 import TestStoreWrapper from '../../../test/StoreWrapper';
 
 describe('<CommentForm />', () => {
@@ -19,7 +18,7 @@ describe('<CommentForm />', () => {
 			// </TestStoreWrapper>
 		);
 
-		expect(wrapper.find(CommentForm)).to.be.ok;
+		expect(wrapper.find(CommentForm)).toBeTruthy();
 	});
 
 	it('render one form', () => {
@@ -35,7 +34,7 @@ describe('<CommentForm />', () => {
 				<CommentForm {...props} />{' '}
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find('form').length).to.equal(1);
+		expect(wrapper.find('form').length).toBe(1);
 	});
 
 	it('rrender one textarea', () => {
@@ -51,7 +50,7 @@ describe('<CommentForm />', () => {
 				<CommentForm {...props} />{' '}
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find('textarea').length).to.equal(1);
+		expect(wrapper.find('textarea').length).toBe(1);
 	});
 
 	it('textarea should start empty', () => {
@@ -68,7 +67,7 @@ describe('<CommentForm />', () => {
 			</TestStoreWrapper>
 		);
 
-		expect(wrapper.find('textarea').props().defaultValue).to.equal('');
+		expect(wrapper.find('textarea').props().defaultValue).toBe('');
 	});
 
 	it('render one button', () => {
@@ -85,6 +84,6 @@ describe('<CommentForm />', () => {
 			</TestStoreWrapper>
 		);
 
-		expect(wrapper.find('button').length).to.equal(1);
+		expect(wrapper.find('button').length).toBe(1);
 	});
 });

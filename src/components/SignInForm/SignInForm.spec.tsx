@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { mount, shallow } from 'enzyme'
-import { expect } from 'chai';
 import { render, fireEvent, act, cleanup } from "@testing-library/react";
 import SignUpFrom from './SignInFrom';
 import TestStoreWrapper from "../../../test/StoreWrapper"
@@ -17,7 +16,7 @@ describe('<SignUpForm />', ()=>{
 			</TestStoreWrapper>
 		).dive();
 
-        expect(wrapper).to.be.ok
+        expect(wrapper).toBeTruthy()
     })
 
     it('render two input filds', ()=>{
@@ -26,7 +25,7 @@ describe('<SignUpForm />', ()=>{
                 <SignUpFrom />
             </TestStoreWrapper>);
 
-        expect(wrapper.find('input').length).to.be.equal(2);
+        expect(wrapper.find('input').length).toBe(2);
     })
 
     it('input filds should be empty by default', ()=>{
@@ -36,10 +35,10 @@ describe('<SignUpForm />', ()=>{
 
 		expect(
 			wrapper.find("input[name='email']").props().defaultValue
-		).to.equal('');
+		).toBe('');
 		expect(
 			wrapper.find("input[name='password']").props().defaultValue
-		).to.equal('');
+		).toBe('');
     })
 
     it('render one button', () => {
@@ -47,7 +46,7 @@ describe('<SignUpForm />', ()=>{
                                     <SignUpFrom />
                                 </TestStoreWrapper>);
 
-        expect(wrapper.find('button').length).to.equal(1)
+        expect(wrapper.find('button').length).toBe(1)
     })
 
     it('render error on submite empty form', async() => {
@@ -62,7 +61,7 @@ describe('<SignUpForm />', ()=>{
             
             const errors = getAllByRole('alert');
 
-            expect(errors.length).to.be.equal(2);
+            expect(errors.length).toBe(2);
         })
     })
 })

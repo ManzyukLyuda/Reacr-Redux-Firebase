@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { mount } from 'enzyme';
 import AuthForm from './AuthForm';
 import { MemoryRouter } from 'react-router-dom';
@@ -16,7 +15,7 @@ describe('<AuthForm />', () => {
 				</MemoryRouter>
 			</TestStoreWrapper>
 		);
-		expect(wrapper).to.be.ok;
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('render SignInForm by default', () => {
@@ -28,7 +27,7 @@ describe('<AuthForm />', () => {
 			</TestStoreWrapper>
 		);
 
-		expect(wrapper.find(SignInForm).length).to.be.equal(1);
+		expect(wrapper.find(SignInForm).length).toBe(1);
 	});
 
 	it('render SignUpForm when selected', () => {
@@ -40,7 +39,7 @@ describe('<AuthForm />', () => {
 			</TestStoreWrapper>
 		);
 
-		expect(wrapper.find(SignUpFrom).length).to.be.equal(1);
+		expect(wrapper.find(SignUpFrom).length).toBe(1);
 	});
 
 	it('render SignInForm when selected', () => {
@@ -52,6 +51,6 @@ describe('<AuthForm />', () => {
 			</TestStoreWrapper>
 		);
 
-		expect(wrapper.find(SignInForm).length).to.be.equal(1);
+		expect(wrapper.find(SignInForm).length).toBe(1);
 	});
 });

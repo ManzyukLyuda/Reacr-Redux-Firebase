@@ -2,7 +2,6 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import Dropdown from './Dropdown';
 import DropdownMenu from 'react-bootstrap/DropdownMenu';
-import { expect } from 'chai';
 import TestStoreWrapper from "../../../test/StoreWrapper"
 
 
@@ -19,7 +18,7 @@ describe('<Dropdown />', () => {
                                     <Dropdown {... props} />
                                 </TestStoreWrapper>);
        
-        expect(wrapper.find(Dropdown).length).to.be.ok;
+        expect(wrapper.find(Dropdown).length).toBeTruthy();
       })
 
     //   it('shouldn"t desplay Dropdown.Toggle if users list is empty', () => {
@@ -57,8 +56,8 @@ describe('<Dropdown />', () => {
                                     <Dropdown {... props} />
                                 </TestStoreWrapper>);
 
-        expect(wrapper.find(Dropdown).length).to.be.ok;
-        expect(wrapper.find(DropdownMenu).length).to.equal(1)
+        expect(wrapper.find(Dropdown).length).toBeTruthy();
+        expect(wrapper.find(DropdownMenu).length).toBe(1)
       })
 
       it('calls dropdownOnChange()', () => {
@@ -72,7 +71,7 @@ describe('<Dropdown />', () => {
                                 </TestStoreWrapper>);
         wrapper.find(Dropdown).prop('onSelect')('test@user.com');
     
-        expect(props.onSelect.mock.calls.length).to.be.equal(1)
-        expect(props.onSelect.mock.calls[0][0]).to.be.equal('test@user.com')
+        expect(props.onSelect.mock.calls.length).toBe(1)
+        expect(props.onSelect.mock.calls[0][0]).toBe('test@user.com')
       })
 })

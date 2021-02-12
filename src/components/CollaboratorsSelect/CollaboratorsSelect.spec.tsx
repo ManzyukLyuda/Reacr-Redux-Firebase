@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import CollaboratorsSelect from './CollaboratorsSelect';
 import TestStoreWrapper from '../../../test/StoreWrapper';
@@ -23,7 +22,7 @@ describe('<CollaboratorsSelect />', () => {
 				<CollaboratorsSelect {...props} />
 			</TestStoreWrapper>
 		);
-		expect(wrapper).to.be.ok;
+		expect(wrapper).toBeTruthy();
 	});
 	it('render <Dropdown /> if has collaborators to add', () => {
 		const wrapper = mount(
@@ -31,7 +30,7 @@ describe('<CollaboratorsSelect />', () => {
 				<CollaboratorsSelect {...props} />
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find(Dropdown).length).to.be.equal(1);
+		expect(wrapper.find(Dropdown).length).toBe(1);
 	});
 	it('render no <Dropdown /> if has no collaborators to add', () => {
 		const props = {
@@ -49,6 +48,6 @@ describe('<CollaboratorsSelect />', () => {
 				<CollaboratorsSelect {...props} />
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find(Dropdown).length).to.be.equal(1);
+		expect(wrapper.find(Dropdown).length).toBe(1);
 	});
 });

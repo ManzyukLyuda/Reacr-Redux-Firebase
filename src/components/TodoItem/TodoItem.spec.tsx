@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import TodoItem from './TodoItem'
 
@@ -21,7 +20,7 @@ describe( '<TodoItem>', ()=>{
 			onToggleItem: () => null,
 		};
         const wrapper = shallow(<TodoItem {...props} />)
-        expect(wrapper.find('h5').first().text()).to.equal('todo')
+        expect(wrapper.find('h5').first().text()).toBe('todo')
     })
 
     it('render correct description of todo', () => {
@@ -39,7 +38,7 @@ describe( '<TodoItem>', ()=>{
 			onToggleItem: () => null,
 		};
         const wrapper = shallow(<TodoItem {...props} />)
-        expect(wrapper.find('.todo-item_description').first().text()).to.equal('first todo')
+        expect(wrapper.find('.todo-item_description').first().text()).toBe('first todo')
     })
 
     it('render correct username of assigned user', () => {
@@ -57,7 +56,7 @@ describe( '<TodoItem>', ()=>{
 			onToggleItem: () => null,
 		};
         const wrapper = shallow(<TodoItem {...props} />)
-        expect(wrapper.find('.todo-item_assigned').first().text()).to.equal('Assigned to test@test.com')
+        expect(wrapper.find('.todo-item_assigned').first().text()).toBe('Assigned to test@test.com')
     })
 
     it('render Done button for new taskes', () => {
@@ -75,7 +74,7 @@ describe( '<TodoItem>', ()=>{
 			onToggleItem: () => null,
 		};
         const wrapper = shallow(<TodoItem {...props} />)
-        expect(wrapper.find('button').first().text()).to.equal('Done')
+        expect(wrapper.find('button').first().text()).toBe('Done')
     })
 
     it('render Delete button for completed taskes', () => {
@@ -93,6 +92,6 @@ describe( '<TodoItem>', ()=>{
 			onToggleItem: () => null,
 		};
 		const wrapper = shallow(<TodoItem {...props} />);
-		expect(wrapper.find('button').first().text()).to.equal('Delete');
+		expect(wrapper.find('button').first().text()).toBe('Delete');
 	});
 })

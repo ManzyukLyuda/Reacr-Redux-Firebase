@@ -1,7 +1,6 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import CommentList from './CommentList';
-import { expect } from 'chai';
 import TestStoreWrapper from "../../../test/StoreWrapper"
 import CommentForm from '../CommentForm/CommentForm';
 
@@ -22,7 +21,7 @@ describe('<CommentList />', () => {
 		};
         const wrapper = shallow( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper>);
        
-        expect(wrapper.find(CommentList)).to.be.ok;
+        expect(wrapper.find(CommentList)).toBeTruthy();
     })
 
     it('render one ul', () => {
@@ -39,7 +38,7 @@ describe('<CommentList />', () => {
 		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find('ul').length).to.be.equal(1);
+        expect(wrapper.find('ul').length).toBe(1);
     })
 
     it('render no li, with no comments', () => {
@@ -56,7 +55,7 @@ describe('<CommentList />', () => {
 		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find('li').length).to.be.equal(0);
+        expect(wrapper.find('li').length).toBe(0);
     })
 
     it('render one h6 title', () => {
@@ -73,8 +72,8 @@ describe('<CommentList />', () => {
 		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find('h6').length).to.be.equal(1);
-        expect(wrapper.find('h6').text()).to.be.equal('Comments');
+        expect(wrapper.find('h6').length).toBe(1);
+        expect(wrapper.find('h6').text()).toBe('Comments');
     })
 
     it('render one li, for one comment', () => {
@@ -98,7 +97,7 @@ describe('<CommentList />', () => {
 		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find('li').length).to.be.equal(1);
+        expect(wrapper.find('li').length).toBe(1);
     })
 
     it('render CommentForm for not completed task', () => {
@@ -115,7 +114,7 @@ describe('<CommentList />', () => {
 		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find(CommentForm).length).to.be.equal(1);
+        expect(wrapper.find(CommentForm).length).toBe(1);
     })
 
     it('render no CommentForm for completed task', () => {
@@ -132,7 +131,7 @@ describe('<CommentList />', () => {
 		};
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find(CommentForm).length).to.be.equal(0);
+        expect(wrapper.find(CommentForm).length).toBe(0);
     })
 
     it('each li should contain comment and author', () => {
@@ -160,7 +159,7 @@ describe('<CommentList />', () => {
         }
         const wrapper = mount( <TestStoreWrapper><CommentList {... props} /> </TestStoreWrapper> );
        
-        expect(wrapper.find('.comment-author').text()).to.be.equal('From: test@user.com');
-        expect(wrapper.find('.comment-text').text()).to.be.equal('test');
+        expect(wrapper.find('.comment-author').text()).toBe('From: test@user.com');
+        expect(wrapper.find('.comment-text').text()).toBe('test');
     })
 })

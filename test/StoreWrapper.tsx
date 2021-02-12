@@ -42,9 +42,9 @@ const state = {
 const app = {
 	api: {
 		signUpUser: () =>
-			new Promise(resolve => (resolve)),
+			new Promise(resolve => resolve),
 		signInUser: () =>
-			new Promise(resolve => (resolve )),
+			new Promise(resolve => resolve),
 		signOut: () => {},
 		getTodos: () => {},
 		getUsers: () => {},

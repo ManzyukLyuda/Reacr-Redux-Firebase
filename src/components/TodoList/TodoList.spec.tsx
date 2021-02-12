@@ -26,7 +26,6 @@ const app = {
 	},
 };
 const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
-const mockStore = configureStore(middlewares);
 
   describe('<TodosList />', () => {
     it('render TodosList', () => {

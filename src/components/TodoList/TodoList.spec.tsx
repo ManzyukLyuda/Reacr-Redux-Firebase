@@ -25,7 +25,7 @@ const app = {
 		addCollaborator: () => {},
 	},
 };
-const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
+// const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
 
   describe('<TodosList />', () => {
     it('render TodosList', () => {
@@ -53,7 +53,7 @@ const middlewares: Middleware<{}, any, Dispatch<AnyAction>>[] | undefined = [];
     })
 
     it('render empty list', () => {
-		const mockStore = configureStore(middlewares);
+		const mockStore = configureStore([]);
 		const store = mockStore({ todos: [] });
 		const props = {
 			onDeleteItem: () => null,

@@ -1,6 +1,5 @@
 
-import * as React from 'react'
-import { expect } from 'chai'
+import * as React from 'react';
 import { mount, shallow } from 'enzyme'
 import AddTodoForm from './TodoForm'
 import { act, fireEvent, render } from '@testing-library/react'
@@ -11,10 +10,10 @@ import { Provider } from 'react-redux';
 import FirebaseProvider from '../../services/firebase-service';
 
 
-interface todoInnerData{
-        name: string,
-        description: string,  
-        assignedTo: string
+interface todoInnerData {
+	name: string;
+	description: string;
+	assignedTo: string;
 }
 const state = {
     getUsers: {
@@ -33,49 +32,50 @@ describe('<AddTodoForm />', () => {
     it('render <AddTodoForm />', () => {
       const props = { onTodoAdd: (_data: todoInnerData) => null}
       const wrapper = shallow(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
-      expect(wrapper).to.be.ok
+      expect(wrapper).toBeTruthy();
+
     })
 
     it('render one form', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null}
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
 
-        expect(wrapper.find('form').length).to.equal(1)
+        expect(wrapper.find('form').length).toBe(1);
       })
 
     it('render one input', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null}
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
 
-        expect(wrapper.find('input').length).to.equal(1)
+        expect(wrapper.find('input').length).toBe(1);
     })
 
     it('input should start empty', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null}
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
             
-        expect(wrapper.find('input').props().defaultValue).to.equal('')
+        expect(wrapper.find('input').props().defaultValue).toBe('');
     })
 
     it('render one textarea', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null}
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
 
-        expect(wrapper.find('textarea').length).to.equal(1)
+        expect(wrapper.find('textarea').length).toBe(1);
     })
 
     it('textarea should start empty', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null }
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
 
-        expect(wrapper.find('textarea').props().defaultValue).to.equal('')
+        expect(wrapper.find('textarea').props().defaultValue).toBe('');
     })
 
     it('render one select', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null }
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
         
-        expect(wrapper.find('select').length).to.equal(1)
+        expect(wrapper.find('select').length).toBe(1);
     })
     it('select should contain users list', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null }
@@ -92,7 +92,7 @@ describe('<AddTodoForm />', () => {
 		);
         
         const users:any = store.getState()
-        expect(wrapper.find('select').find('option').length).to.equal(2)
+        expect(wrapper.find('select').find('option').length).toBe(2);
         expect(wrapper.find('select').find('option').forEach( (option, index)=>{
             option.first().text() === users.getUsers.users[index].email;
         })
@@ -103,14 +103,14 @@ describe('<AddTodoForm />', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null }
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
 
-        expect(wrapper.render().find('select').val()).to.equal('user@user.com');
+        expect(wrapper.render().find('select').val()).toBe('user@user.com');
     })
 
     it('render one button', () => {
         const props = { onTodoAdd: (_data: todoInnerData) => null }
         const wrapper = mount(<TestStoreWrapper><AddTodoForm {...props} /></TestStoreWrapper>)
 
-        expect(wrapper.find('button').length).to.equal(1)
+        expect(wrapper.find('button').length).toBe(1);
     })
 
     it('render error on submite empty form', async () => {
@@ -124,7 +124,7 @@ describe('<AddTodoForm />', () => {
 			fireEvent.submit(getByTestId('submit'));
 		});
 
-		expect(getAllByRole('alert').length).to.be.equal(1);
+		expect(getAllByRole('alert').length).toBe(1);
 	});
 });
 

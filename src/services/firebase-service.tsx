@@ -48,7 +48,7 @@ export default ({ children }: Props) => {
 	const signUpUser = (data: SignUpFormData) => {
 		dispatch(actions.firebaseStartLoading());
 		dispatch(actions.firebaseClearError());
-		return new Promise((resolve, reject) => {
+		return new Promise<void>((resolve, reject) => {
 			Firebase.auth()
 				.createUserWithEmailAndPassword(data.email, data.password)
 				.then(function (userCredential : firebase.auth.UserCredential) {
@@ -63,7 +63,7 @@ export default ({ children }: Props) => {
 						Database.ref().update(updates);
 					}
 					dispatch(actions.firebaseEndLoading());
-					resolve({ success: true });
+					resolve();
 				})
 				.catch(function (error) {
 					dispatch(actions.firebaseGetError(error));
@@ -73,13 +73,13 @@ export default ({ children }: Props) => {
 		});
 	};
 	const signInUser = (data: { email: string; password: string }) => {
-		return new Promise((resolve, reject) => {
+		return new Promise<void>((resolve, reject) => {
 			Firebase.auth()
 				.signInWithEmailAndPassword(data.email, data.password)
 				.then(function (user) {
 					dispatch(actions.userLogIn(user.user!.email!));
 					dispatch(actions.firebaseEndLoading());
-					resolve({ success: true });
+					resolve();
 				})
 				.catch(function (error) {
 					dispatch(actions.firebaseGetError(error));
@@ -92,7 +92,7 @@ export default ({ children }: Props) => {
 	const signOut = () => {
 		Firebase.auth()
 			.signOut()
-			.then(function () {
+			.then(() => {
 				dispatch(actions.userLogOut());
 			});
 	};
@@ -151,7 +151,6 @@ export default ({ children }: Props) => {
 				comment: comment,
 				parentTodo: parentTodo,
 			})
-			.then((doc) => {})
 			.catch((error) => {
 				console.error(error);
 			});
@@ -163,7 +162,6 @@ export default ({ children }: Props) => {
 		).push();
 		collaboratorRef
 			.set(collaborator)
-			.then((doc) => {})
 			.catch((error) => {
 				console.error(error);
 			});

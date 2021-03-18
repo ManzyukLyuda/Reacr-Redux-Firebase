@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { expect } from 'chai';
 import { mount } from 'enzyme';
 import Router from './Router';
 import { MemoryRouter } from 'react-router-dom';
@@ -19,7 +18,7 @@ describe('<Router />', () => {
 				</MemoryRouter>
 			</TestStoreWrapper>
 		);
-		expect(wrapper).to.be.ok;
+		expect(wrapper).toBeTruthy();
 	});
 
 	it('render <Form /> for anonymous users ', () => {
@@ -29,10 +28,7 @@ describe('<Router />', () => {
 			isLoading: false,
 			dispatch: jest.fn(),
 		};
-		const middlewares:
-			| Middleware<{}, any, Dispatch<AnyAction>>[]
-			| undefined = [];
-		const mockStore = configureStore(middlewares);
+		const mockStore = configureStore([]);
 		const state = {
 			logInUser: {
 				isLogedIn: false,
@@ -50,7 +46,7 @@ describe('<Router />', () => {
 			</Provider>
 		);
 
-		expect(wrapper.find(SignInForm).length).to.be.equal(1);
+		expect(wrapper.find(SignInForm).length).toBe(1);
 	});
 
 	it('render <Todo /> for non anonymous users ', () => {
@@ -61,6 +57,6 @@ describe('<Router />', () => {
 				</MemoryRouter>
 			</TestStoreWrapper>
 		);
-		expect(wrapper.find(Todo).length).to.be.equal(1);
+		expect(wrapper.find(Todo).length).toBe(1);
 	});
 });

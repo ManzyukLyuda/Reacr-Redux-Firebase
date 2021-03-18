@@ -4,7 +4,6 @@ import TodosList from './TodoList';
 import './TodoList.css'
 import TestStoreWrapper from '../../../test/StoreWrapper';
 import configureStore from 'redux-mock-store'
-import { Middleware, Dispatch, AnyAction } from 'redux';
 import { Provider } from 'react-redux';
 import { FirebaseContext } from '../../services/firebase-service';
 

@@ -17,7 +17,7 @@ export const todos = (state: State = initialState, action: Action) => {
 		case actionTypes.todos.UPDATE_TODOS:
 			return action.payload.map((t: ToDo) => todo(t, action));
 
-		case 'USER_LOG_OUT':
+		case actionTypes.logIn.USER_LOG_OUT:
 			return initialState;
 		default:
 			return state;
